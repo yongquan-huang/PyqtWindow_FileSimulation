@@ -268,7 +268,7 @@ class Shuiwen_Canvas(FigureCanvas):
 
         self.timer = QtCore.QTimer(self)   # 窗口重绘定时器
         self.timer.timeout.connect(self.line)
-        self.timer.start(100)
+        self.timer.start(1000)
 
     def line(self):
         self.data_y.append(ins_real_data_dict.get('water_temperature', 0))

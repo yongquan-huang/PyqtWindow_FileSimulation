@@ -21,7 +21,7 @@ class Controller():
 
     def show_realtime(self):
         self.realtime = realtime_data()
-        self.realtime.pushButton.clicked.connect(self.close)
+        self.realtime.pushButton.clicked.connect(self.realtime.close)
         self.realtime.pushButton.clicked.connect(self.show_main)
         self.realtime.pushButton_3.clicked.connect(self.realtime.close)
         self.realtime.pushButton_3.clicked.connect(self.show_history)
@@ -48,17 +48,6 @@ class Controller():
         self.file.pushButton_3.clicked.connect(self.file.close)
         self.file.pushButton_3.clicked.connect(self.show_history)
         self.file.show()
-
-    def close(self):
-        self.realtime.close()
-        self.realtime.shuiwen.timer.stop()
-        self.realtime.youya.timer.stop()
-        self.realtime.fadongji.timer.stop()
-        self.realtime.genqieqi.timer.stop()
-        self.realtime.shusongun.timer.stop()
-        self.realtime.qieduandao.timer.stop()
-        self.realtime.paifengji.timer.stop()
-        self.realtime.erjishusong.timer.stop()
 
 def run_qt():
     app = QApplication(sys.argv)

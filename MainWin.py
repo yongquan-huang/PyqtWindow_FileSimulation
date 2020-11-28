@@ -193,7 +193,7 @@ class GaugePanel(QWidget):
         super(GaugePanel, self).__init__()
         self.setWindowTitle("GaugePanel")
         self.setMinimumWidth(250)
-        self.setMinimumHeight(250),
+        self.setMinimumHeight(250)
 
         self.timer = QTimer()  # 窗口重绘定时器，负责每次刷新窗口
         self.timer.timeout.connect(self.update)
@@ -269,7 +269,7 @@ class GaugePanel(QWidget):
         p.save()
         radius = 100
         lg = QLinearGradient(-radius, -radius, radius, radius)
-        # 渐变函数，参数：x1,y1,x2,y2；x1-x2:从左到右渐变，y1-y2:从上到下渐变
+        # 渐变函数，参数：,y1,x2,y2；x1-x2:从左到右渐变，y1-y2:从上到下渐变
         lg.setColorAt(0, Qt.white)
         lg.setColorAt(1, Qt.black)
         p.setBrush(lg)    #设置画刷
