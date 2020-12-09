@@ -28,21 +28,22 @@ class MainWindow(QMainWindow):
         self.label.setText("")
         self.label.setFixedWidth(1400)
         self.label.setFixedHeight(26)
+
         img = QImage(":/pic/首页字体.png")
         result = img.scaled(self.label.width(), self.label.height(), Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
         self.label.setPixmap(QPixmap.fromImage(result))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(560, 26, 831, 161))
+        self.label_2.setGeometry(QtCore.QRect(556, 26, 838, 161))
         self.label_2.setText("")
-        self.label_2.setFixedWidth(831)
+        self.label_2.setFixedWidth(838)
         self.label_2.setFixedHeight(161)
         img2 = QImage(":/pic/首页工况机.png")
         result2 = img2.scaled(self.label_2.width(), self.label_2.height(), Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
         self.label_2.setPixmap(QPixmap.fromImage(result2))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(560, 180, 831, 431))
+        self.label_3.setGeometry(QtCore.QRect(560, 180, 830, 431))
         self.label_3.setText("")
         self.label_3.setFixedWidth(831)
         self.label_3.setFixedHeight(431)
@@ -50,36 +51,79 @@ class MainWindow(QMainWindow):
         result3 = img3.scaled(self.label_3.width(), self.label_3.height(), Qt.IgnoreAspectRatio,Qt.SmoothTransformation)
         self.label_3.setPixmap(QPixmap.fromImage(result3))
         self.label_3.setObjectName("label_3")
+
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(650, 112, 54, 20))
+        # 坐标x、y,长宽
+        self.label_4.setGeometry(QtCore.QRect(650, 100, 54, 31))
         self.label_4.setObjectName("label_4")
+        # 字体的大小
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_4.setFont(font)
+
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(650, 140, 54, 31))
+        self.label_5.setGeometry(QtCore.QRect(650, 134, 54, 31))
         self.label_5.setObjectName("label_5")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_5.setFont(font)
+
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(810, 112, 54, 20))
+        self.label_6.setGeometry(QtCore.QRect(810, 105, 54, 19))
         self.label_6.setObjectName("label_6")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_6.setFont(font)
+
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(810, 140, 54, 31))
+        self.label_7.setGeometry(QtCore.QRect(810, 134, 54, 31))
         self.label_7.setObjectName("label_7")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_7.setFont(font)
+
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(980, 140, 54, 31))
+        self.label_8.setGeometry(QtCore.QRect(970, 134, 80, 31))
         self.label_8.setObjectName("label_8")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_8.setFont(font)
+
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(980, 112, 54, 20))
+        self.label_9.setGeometry(QtCore.QRect(980, 105, 200, 20))
         self.label_9.setObjectName("label_9")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_9.setFont(font)
+
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        self.label_10.setGeometry(QtCore.QRect(1140, 112, 54, 20))
+        self.label_10.setGeometry(QtCore.QRect(1140, 105, 54, 20))
         self.label_10.setObjectName("label_10")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_10.setFont(font)
+
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
-        self.label_11.setGeometry(QtCore.QRect(1140, 140, 54, 31))
+        self.label_11.setGeometry(QtCore.QRect(1140, 134, 54, 31))
         self.label_11.setObjectName("label_11")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_11.setFont(font)
+
         self.label_12 = QtWidgets.QLabel(self.centralwidget)
-        self.label_12.setGeometry(QtCore.QRect(1300, 112, 54, 20))
+        self.label_12.setGeometry(QtCore.QRect(1300, 105, 54, 20))
         self.label_12.setObjectName("label_12")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_12.setFont(font)
+
         self.label_13 = QtWidgets.QLabel(self.centralwidget)
-        self.label_13.setGeometry(QtCore.QRect(1300, 140, 54, 31))
+        self.label_13.setGeometry(QtCore.QRect(1300, 134, 54, 31))
         self.label_13.setObjectName("label_13")
+        font.setFamily("Arial")
+        font.setPointSize(13)
+        self.label_13.setFont(font)
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(60, 77, 400, 300))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
@@ -218,7 +262,7 @@ class GaugePanel(QWidget):
         self.title = '转速×1000r/min'
         self.value = 0
         self.minRadio = 1  # 缩小比例,用于计算刻度数字，表示一小格代表多少
-        self.decimals = 0  # 小数位数
+        self.decimals = 1  # 小数位数
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
@@ -337,8 +381,8 @@ class GaugePanel(QWidget):
 
     def drawValue(self, p):
         side = min(self.width(), self.height())
-        w, h = side / 2 * 0.4, side / 2 * 0.2
-        x, y = self.width() / 2 - w / 2, self.height() / 2 + side / 2 * 0.55
+        w, h = side / 2 * 0.5, side / 2 * 0.25
+        x, y = self.width() / 2 - w / 2, self.height() / 2 + side / 2 * 0.5
         self.lcdDisplay.setGeometry(int(x), int(y), int(w), int(h))
 
         ss = '{:.' + str(self.decimals) + 'f}'
@@ -382,12 +426,21 @@ class GaugePanel2(GaugePanel):
         self.endAngle = 330
         self.scaleMainNum = 2
         self.scaleSubNum = 5
-        self.maxValue = 100
+        self.maxValue = 10
         self.title = '油压×100KPa'
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
         self.value = ins_real_data_dict.get('oil_pressure', 0)
+
+    def drawValue(self, p):
+        side = min(self.width(), self.height())
+        w, h = side / 2 * 0.7, side / 2 * 0.35
+        x, y = self.width() / 2 - w / 2, self.height() / 2 + side / 2 * 0.2
+        self.lcdDisplay.setGeometry(int(x), int(y), int(w), int(h))
+
+        ss = '{:.' + str(self.decimals) + 'f}'
+        self.lcdDisplay.display(ss.format(self.value))
 
     def paintEvent(self, event):
         side = min(self.width(), self.height())
