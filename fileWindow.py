@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication,QWidget
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 import sys
 from ftplib import FTP
+from run.run2020.env2019.env.app.PyqtWindow.graph import Table
 
 class File_UpLoad(QWidget):
 
@@ -59,22 +62,22 @@ class File_UpLoad(QWidget):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.pushButton_5.setFont(font)
-        self.pushButton_5.clicked.connect(self.file_upload)
+        self.pushButton_5.clicked.connect(self.file_upload)  # 信号连接到ftp文件上传槽函数
 
-        self.checkBox = QtWidgets.QCheckBox(File_UpLoad)
-        self.checkBox.setGeometry(QtCore.QRect(20, 90, 160, 30))
-        self.checkBox.setObjectName("checkBox")
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(15)
-        self.checkBox.setFont(font)
-        self.checkBox_2 = QtWidgets.QCheckBox(File_UpLoad)
-        self.checkBox_2.setGeometry(QtCore.QRect(20, 130, 160, 30))
-        self.checkBox_2.setObjectName("checkBox_2")
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(15)
-        self.checkBox_2.setFont(font)
+        # self.checkBox = QtWidgets.QCheckBox(File_UpLoad)
+        # self.checkBox.setGeometry(QtCore.QRect(20, 90, 160, 30))
+        # self.checkBox.setObjectName("checkBox")
+        # font = QtGui.QFont()
+        # font.setFamily("Arial")
+        # font.setPointSize(15)
+        # self.checkBox.setFont(font)
+        # self.checkBox_2 = QtWidgets.QCheckBox(File_UpLoad)
+        # self.checkBox_2.setGeometry(QtCore.QRect(20, 130, 160, 30))
+        # self.checkBox_2.setObjectName("checkBox_2")
+        # font = QtGui.QFont()
+        # font.setFamily("Arial")
+        # font.setPointSize(15)
+        # self.checkBox_2.setFont(font)
         # self.checkBox_3 = QtWidgets.QCheckBox(File_UpLoad)
         # self.checkBox_3.setGeometry(QtCore.QRect(20, 150, 71, 16))
         # self.checkBox_3.setObjectName("checkBox_3")
@@ -86,6 +89,18 @@ class File_UpLoad(QWidget):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.checkBox_4.setFont(font)
+        # 添加表格窗口
+        self.gridLayoutWidget = QtWidgets.QWidget(File_UpLoad)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(12, 80, 660, 500))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.MaingridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.MaingridLayout.setContentsMargins(0, 0, 0, 0)
+        self.MaingridLayout.setObjectName("MaingridLayout")
+        self.table = Table()
+        self.MaingridLayout.addWidget(self.table)
+        self.table.show()
+        # 获取表格的行数
+        self.table.row_num = self.table.tableWidget.rowCount()
 
         self.retranslateUi(File_UpLoad)
         QtCore.QMetaObject.connectSlotsByName(File_UpLoad)
@@ -98,8 +113,8 @@ class File_UpLoad(QWidget):
         self.pushButton_3.setText(_translate("File_UpLoad", "历史数据"))
         self.pushButton_4.setText(_translate("File_UpLoad", "文件管理"))
         self.pushButton_5.setText(_translate("File_UpLoad", "文件上传"))
-        self.checkBox.setText(_translate("File_UpLoad", "torque_data.txt"))
-        self.checkBox_2.setText(_translate("File_UpLoad", "ins_data.txt"))
+        # self.checkBox.setText(_translate("File_UpLoad", "torque_data.txt"))
+        # self.checkBox_2.setText(_translate("File_UpLoad", "ins_data.txt"))
         # self.checkBox_3.setText(_translate("File_UpLoad", "CheckBox"))
         self.checkBox_4.setText(_translate("File_UpLoad", "全选"))
 
@@ -116,27 +131,34 @@ class File_UpLoad(QWidget):
         ftp.login('test', '123456')
 
         # 上传文件
-        ins_data_path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\ins_data.txt'
-        torque_data_path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\torque_data.txt'
-        if self.checkBox.isChecked():
-            f = open(torque_data_path, 'rb')
-            ftp.storbinary("STOR torque_data.txt", f, 1024)
-            f.close()
-        if self.checkBox_2.isChecked():
-            f = open(ins_data_path, 'rb')
-            ftp.storbinary("STOR ins_data.txt", f, 1024)
-            f.close()
+        path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env'
+        for row in range(self.table.row_num):
+            if self.table.tableWidget.cellWidget(row,0).isChecked():
+                fname = self.table.tableWidget.item(row,1).text()
+                file_path = path + '\\' + fname
+                f = open(file_path, 'rb')
+                ftp.storbinary("STOR " + fname, f, 1024)   # 这里STOP后要有一个空格
+                f.close()
+        # ins_data_path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\ins_data.txt'
+        # torque_data_path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\torque_data.txt'
+        # if self.checkBox.isChecked():
+        #     f = open(torque_data_path, 'rb')
+        #     ftp.storbinary("STOR torque_data.txt", f, 1024)
+        #     f.close()
+        # if self.checkBox_2.isChecked():
+        #     f = open(ins_data_path, 'rb')
+        #     ftp.storbinary("STOR ins_data.txt", f, 1024)
+        #     f.close()
         # 关闭调试模式并退出FTP连接
         ftp.set_debuglevel(0)
         ftp.quit()
 
     def setcheck(self):
-        if  self.checkBox_4.isChecked():
-            self.checkBox.setChecked(True)
-            self.checkBox_2.setChecked(True)
-        else:
-            self.checkBox.setChecked(False)
-            self.checkBox_2.setChecked(False)
+        for row in range(self.table.row_num):
+            if  self.checkBox_4.isChecked():
+                self.table.tableWidget.cellWidget(row,0).setCheckState(Qt.Checked)
+            else:
+                self.table.tableWidget.cellWidget(row,0).setCheckState(Qt.Unchecked)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
