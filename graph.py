@@ -38,7 +38,7 @@ class Table(QWidget):
             # print(str(fsize) + 'KB')
 
             # 获取文件最近的修改日期
-            ftime = os.path.getmtime(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env' + '\\' + files[0])
+            ftime = os.path.getmtime(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env' + '\\' + files[row])
             date = datetime.datetime.fromtimestamp(ftime)
             ftime = date.strftime('%Y-%m-%d %H:%M:%S')
             # print(date.strftime('%Y-%m-%d %H:%M:%S'))

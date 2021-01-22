@@ -107,7 +107,7 @@ class File_UpLoad(QWidget):
 
     def retranslateUi(self, File_UpLoad):
         _translate = QtCore.QCoreApplication.translate
-        File_UpLoad.setWindowTitle(_translate("File_UpLoad", "Form"))
+        File_UpLoad.setWindowTitle(_translate("File_UpLoad", "文件管理"))
         self.pushButton.setText(_translate("File_UpLoad", "实时数据"))
         self.pushButton_2.setText(_translate("File_UpLoad", "实时数据波形显示"))
         self.pushButton_3.setText(_translate("File_UpLoad", "历史数据"))
