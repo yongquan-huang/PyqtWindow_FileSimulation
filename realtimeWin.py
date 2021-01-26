@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import random
 from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
-from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict,ins_real_data_dict
+# from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict,ins_real_data_dict
 
 class realtime_data(QWidget):
     def __init__(self):
@@ -271,7 +271,8 @@ class Shuiwen_Canvas(FigureCanvas):
         self.timer.start(1000)
 
     def line(self):
-        self.data_y.append(ins_real_data_dict.get('water_temperature', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        self.data_y.append(int(ins_real_data_dict.get('water_temperature', 0)))
         self.axes.plot(self.data_y, color='red')
         self.axes.grid(True)
         self.draw()
@@ -286,7 +287,8 @@ class Youya_Canvas(Shuiwen_Canvas):
         super(Youya_Canvas, self).__init__(data_y, width, height, dpi)
 
     def line(self):
-        self.data_y.append(ins_real_data_dict.get('oil_pressure', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        self.data_y.append(int(ins_real_data_dict.get('oil_pressure', 0)))
         self.axes.plot(self.data_y, color='orange')
         self.axes.grid(True)
         self.draw()
@@ -301,7 +303,8 @@ class Fadongji_Canvas(Shuiwen_Canvas):
         super(Fadongji_Canvas, self).__init__(data_y, width, height, dpi)
 
     def line(self):
-        self.data_y.append(ins_real_data_dict.get('engine_speed', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        self.data_y.append(int(ins_real_data_dict.get('engine_speed', 0)))
         self.axes.plot(self.data_y, color='yellow')
         self.axes.grid(True)
         self.draw()
@@ -316,7 +319,8 @@ class Genqieqi_Canvas(Shuiwen_Canvas):
         super(Genqieqi_Canvas, self).__init__(data_y, width, height, dpi)
 
     def line(self):
-        self.data_y.append(torque_real_data_dict.get('1_torque_ch', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict
+        self.data_y.append(int(torque_real_data_dict.get('1_torque_ch', 0)))
         self.axes.plot(self.data_y, color='black')
         self.axes.grid(True)
         self.draw()
@@ -330,7 +334,8 @@ class Shusonggun_Canvas(Shuiwen_Canvas):
         super(Shusonggun_Canvas, self).__init__(data_y, width, height, dpi)
 
     def line(self):
-        self.data_y.append(torque_real_data_dict.get('2_torque_ch', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict
+        self.data_y.append(int(torque_real_data_dict.get('2_torque_ch', 0)))
         self.axes.plot(self.data_y, color='blue')
         self.axes.grid(True)
         self.draw()
@@ -345,7 +350,8 @@ class Qieduandao_Canvas(Shuiwen_Canvas):
         super(Qieduandao_Canvas, self).__init__(data_y, width, height, dpi)
 
     def line(self):
-        self.data_y.append(torque_real_data_dict.get('3_torque_ch', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict
+        self.data_y.append(int(torque_real_data_dict.get('3_torque_ch', 0)))
         self.axes.plot(self.data_y, color='#4B7902')
         self.axes.grid(True)
         self.draw()
@@ -360,7 +366,8 @@ class Paifengji_Canvas(Shuiwen_Canvas):
         super(Paifengji_Canvas, self).__init__(data_y, width, height, dpi)
 
     def line(self):
-        self.data_y.append(torque_real_data_dict.get('4_torque_ch', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict
+        self.data_y.append(int(torque_real_data_dict.get('4_torque_ch', 0)))
         self.axes.plot(self.data_y, color='#F00CCB')
         self.axes.grid(True)
         self.draw()
@@ -375,7 +382,8 @@ class Erjishusong_Canvas(Shuiwen_Canvas):
         super(Erjishusong_Canvas, self).__init__(data_y, width, height, dpi)
 
     def line(self):
-        self.data_y.append(torque_real_data_dict.get('5_torque_ch', 0))
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict
+        self.data_y.append(int(torque_real_data_dict.get('5_torque_ch', 0)))
         self.axes.plot(self.data_y, color='#A52A2A')
         self.axes.grid(True)
         self.draw()

@@ -9,8 +9,7 @@ import sys
 # from SerialCommunication import WorkThread
 # from SerialCommunication import genqieqiyouya_y, genqieqiliuliang_y, shusonggunyouya_y, shusonggunliuliang_y,qieduandaoyouya_y, \
 # qieduandaoliuliang_y, paifengjiyouya_y, paifengjiliuliang_y, erjishusongyouya_y, erjishusongliuliang_y, shuiwen_y, youya_y, fadongji_y
-from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict, ins_real_data_dict
-import apprcc_rc
+# import apprcc_rc
 
 # 界面图片、文字以及5个扭矩，转速数据
 class MainWindow(QMainWindow):
@@ -62,11 +61,11 @@ class MainWindow(QMainWindow):
         self.label_2.setAlignment(Qt.AlignCenter)
 
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(560, 180, 830, 431))
+        self.label_3.setGeometry(QtCore.QRect(555, 180, 845, 431))
         self.label_3.setText("")
-        self.label_3.setFixedWidth(831)
+        self.label_3.setFixedWidth(845)
         self.label_3.setFixedHeight(431)
-        img3 = QImage(":/pic/首页机器图片.png")
+        img3 = QImage("./首页机器图片.png")
         result3 = img3.scaled(self.label_3.width(), self.label_3.height(), Qt.IgnoreAspectRatio,Qt.SmoothTransformation)
         self.label_3.setPixmap(QPixmap.fromImage(result3))
         self.label_3.setObjectName("label_3")
@@ -120,7 +119,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label6.setFont(font)
-        self.label6.setText('扭矩：')
+        self.label6.setText('流量：')
         self.label6.setAlignment(Qt.AlignCenter)
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(623, 100, 100, 25))  # 坐标x、y,长宽
@@ -135,7 +134,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label7.setFont(font)
-        self.label7.setText('转速：')
+        self.label7.setText('压力：')
         self.label7.setAlignment(Qt.AlignCenter)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(623, 125, 100, 25))
@@ -150,7 +149,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label8.setFont(font)
-        self.label8.setText('扭矩：')
+        self.label8.setText('流量：')
         self.label8.setAlignment(Qt.AlignCenter)
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         self.label_6.setGeometry(QtCore.QRect(792, 100, 100, 25))
@@ -165,7 +164,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label9.setFont(font)
-        self.label9.setText('转速：')
+        self.label9.setText('压力：')
         self.label9.setAlignment(Qt.AlignCenter)
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(792, 125, 100, 25))
@@ -180,7 +179,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label10.setFont(font)
-        self.label10.setText('扭矩：')
+        self.label10.setText('流量：')
         self.label10.setAlignment(Qt.AlignCenter)
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
         self.label_8.setGeometry(QtCore.QRect(961, 100, 100, 25))
@@ -195,10 +194,10 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label11.setFont(font)
-        self.label11.setText('转速：')
+        self.label11.setText('压力：')
         self.label11.setAlignment(Qt.AlignCenter)
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(971, 125, 100, 25))
+        self.label_9.setGeometry(QtCore.QRect(961, 125, 100, 25))
         self.label_9.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
@@ -210,7 +209,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label12.setFont(font)
-        self.label12.setText('扭矩：')
+        self.label12.setText('流量：')
         self.label12.setAlignment(Qt.AlignCenter)
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
         self.label_10.setGeometry(QtCore.QRect(1130, 100, 100, 25))
@@ -225,7 +224,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label13.setFont(font)
-        self.label13.setText('转速：')
+        self.label13.setText('压力：')
         self.label13.setAlignment(Qt.AlignCenter)
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
         self.label_11.setGeometry(QtCore.QRect(1130, 125, 100, 25))
@@ -240,7 +239,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label14.setFont(font)
-        self.label14.setText('扭矩：')
+        self.label14.setText('流量：')
         self.label14.setAlignment(Qt.AlignCenter)
         self.label_12 = QtWidgets.QLabel(self.centralwidget)
         self.label_12.setGeometry(QtCore.QRect(1299, 100, 100, 25))
@@ -255,7 +254,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label15.setFont(font)
-        self.label15.setText('转速：')
+        self.label15.setText('压力：')
         self.label15.setAlignment(Qt.AlignCenter)
         self.label_13 = QtWidgets.QLabel(self.centralwidget)
         self.label_13.setGeometry(QtCore.QRect(1299, 125, 100, 25))
@@ -355,7 +354,9 @@ class MainWindow(QMainWindow):
         self.pushButton_3.setText(_translate("history_data", "历史数据"))
         self.pushButton_4.setText(_translate("history_data", "文件管理"))
 
+    @pyqtSlot()
     def testTimer_timeout_handle(self):
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict
         genqieqiyouya = torque_real_data_dict.get('1_torque_ch', 0)
         shusonggunyouya = torque_real_data_dict.get('2_torque_ch', 0)
         qieduandaoyouya = torque_real_data_dict.get('3_torque_ch', 0)
@@ -403,11 +404,13 @@ class GaugePanel(QWidget):
         self.title = '转速×1000r/min'
         self.value = 0
         self.minRadio = 1  # 缩小比例,用于计算刻度数字，表示一小格代表多少
-        self.decimals = 1  # 小数位数
+        self.decimals = 0  # 小数位数
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('engine_speed', 0)
+        self.value = float(self.value)
         # self.value = self.value + 1
         # if self.value > self.maxValue:
         #     self.value = self.minValue
@@ -527,7 +530,7 @@ class GaugePanel(QWidget):
         self.lcdDisplay.setGeometry(int(x), int(y), int(w), int(h))
 
         ss = '{:.' + str(self.decimals) + 'f}'
-        self.lcdDisplay.display(ss.format(self.value))
+        self.lcdDisplay.display(ss.format(self.value))   #ss.format(self.value)
 
     def drawIndicator(self, p):
         p.save()
@@ -572,7 +575,9 @@ class GaugePanel2(GaugePanel):
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('oil_pressure', 0)
+        self.value = float(self.value)
 
     def drawValue(self, p):
         side = min(self.width(), self.height())
@@ -581,7 +586,7 @@ class GaugePanel2(GaugePanel):
         self.lcdDisplay.setGeometry(int(x), int(y), int(w), int(h))
 
         ss = '{:.' + str(self.decimals) + 'f}'
-        self.lcdDisplay.display(ss.format(self.value))
+        self.lcdDisplay.display(ss.format(self.value))  #ss.format(self.value)
 
     def paintEvent(self, event):
         side = min(self.width(), self.height())
@@ -695,7 +700,9 @@ class GaugePanel3(GaugePanel2):
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('water_temperature', 0)
+        self.value = float(self.value)
 
 # 仪表盘数据——电池电压
 class GaugePanel4(GaugePanel2):
@@ -709,7 +716,9 @@ class GaugePanel4(GaugePanel2):
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('battery_voltage', 0)
+        self.value = float(self.value)
 
 # 完整界面展示
 class MainForm(MainWindow):

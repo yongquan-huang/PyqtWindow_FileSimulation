@@ -63,6 +63,7 @@ class File_UpLoad(QWidget):
         font.setPointSize(15)
         self.pushButton_5.setFont(font)
         self.pushButton_5.clicked.connect(self.file_upload)  # 信号连接到ftp文件上传槽函数
+        self.pushButton_5.clicked.connect(self.msg)
 
         # self.checkBox = QtWidgets.QCheckBox(File_UpLoad)
         # self.checkBox.setGeometry(QtCore.QRect(20, 90, 160, 30))
@@ -159,6 +160,10 @@ class File_UpLoad(QWidget):
                 self.table.tableWidget.cellWidget(row,0).setCheckState(Qt.Checked)
             else:
                 self.table.tableWidget.cellWidget(row,0).setCheckState(Qt.Unchecked)
+
+    def msg(self):
+        '''文件上传成功弹出窗口'''
+        QMessageBox.information(self, '消息', '上传成功')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
