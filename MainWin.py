@@ -11,7 +11,7 @@ import sys
 # qieduandaoliuliang_y, paifengjiyouya_y, paifengjiliuliang_y, erjishusongyouya_y, erjishusongliuliang_y, shuiwen_y, youya_y, fadongji_y
 # import apprcc_rc
 
-# 界面图片、文字以及5个扭矩，转速数据
+# 界面图片、文字以及5个扭矩，转速数据 扭矩type是数字，转速type是字符串，因此要转换成float
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow,self).__init__()
@@ -390,7 +390,7 @@ class GaugePanel(QWidget):
         self.testTimer.start(10)
 
         self.lcdDisplay = QLCDNumber(self) #数据显示框
-        self.lcdDisplay.setDigitCount(3)
+        self.lcdDisplay.setDigitCount(5)   # 数据显示框显示位数
         self.lcdDisplay.setMode(QLCDNumber.Dec)
         self.lcdDisplay.setSegmentStyle(QLCDNumber.Flat)
         self.lcdDisplay.setStyleSheet('border:2px solid green;color:green;background:silver')
@@ -400,11 +400,11 @@ class GaugePanel(QWidget):
         self.scaleMainNum = 10  # 主刻度数
         self.scaleSubNum = 10  # 主刻度被分割份数
         self.minValue = 0
-        self.maxValue = 200  #200
+        self.maxValue = 1000  #200
         self.title = '转速×1000r/min'
         self.value = 0
         self.minRadio = 1  # 缩小比例,用于计算刻度数字，表示一小格代表多少
-        self.decimals = 0  # 小数位数
+        self.decimals = 1  # 小数位数
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
