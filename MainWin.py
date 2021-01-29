@@ -85,7 +85,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(16)
         self.label2.setFont(font)
-        self.label2.setText('输送辊马达')
+        self.label2.setText('一级输送通道马达')
         self.label2.setAlignment(Qt.AlignCenter)
         # 切段刀辊马达
         self.label3 = QLabel(self)
@@ -101,7 +101,7 @@ class MainWindow(QMainWindow):
         font.setFamily("Arial")
         font.setPointSize(16)
         self.label4.setFont(font)
-        self.label4.setText('排风机马达')
+        self.label4.setText('除杂风机马达')
         self.label4.setAlignment(Qt.AlignCenter)
         # 二级输送通道马达
         self.label5 = QLabel(self)
@@ -113,156 +113,191 @@ class MainWindow(QMainWindow):
         self.label5.setAlignment(Qt.AlignCenter)
 
         # 扭矩，转速及其对应数字建立和设置
-        # 根切器扭矩
+        # 根切器流量
         self.label6 = QLabel(self.centralwidget)
-        self.label6.setGeometry(QtCore.QRect(555, 100, 84, 25))
+        self.label6.setGeometry(QtCore.QRect(555, 80, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label6.setFont(font)
         self.label6.setText('流量：')
         self.label6.setAlignment(Qt.AlignCenter)
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(623, 100, 100, 25))  # 坐标x、y,长宽
+        self.label_4.setGeometry(QtCore.QRect(623, 80, 100, 25))  # 坐标x、y,长宽
         self.label_4.setObjectName("label_4")
         font.setFamily("Arial")  # 字体的大小
         font.setPointSize(15)
         self.label_4.setFont(font)
         self.label_4.setAlignment(Qt.AlignCenter)
-        # 根切器转速
+        # 根切器油压
         self.label7 = QLabel(self.centralwidget)
-        self.label7.setGeometry(QtCore.QRect(555, 125, 84, 25))
+        self.label7.setGeometry(QtCore.QRect(555, 105, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label7.setFont(font)
         self.label7.setText('压力：')
         self.label7.setAlignment(Qt.AlignCenter)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(623, 125, 100, 25))
+        self.label_5.setGeometry(QtCore.QRect(623, 105, 100, 25))
         self.label_5.setObjectName("label_5")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_5.setFont(font)
         self.label_5.setAlignment(Qt.AlignCenter)
-        # 输送辊马达扭矩
+        self.label_5_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5_2.setGeometry(QtCore.QRect(623, 130, 100, 25))
+        self.label_5_2.setObjectName("label_5")
+        font.setFamily("Arial")
+        font.setPointSize(15)
+        self.label_5_2.setFont(font)
+        self.label_5_2.setAlignment(Qt.AlignCenter)
+        # 输送辊马达流量
         self.label8 = QLabel(self.centralwidget)
-        self.label8.setGeometry(QtCore.QRect(724, 100, 84, 25))
+        self.label8.setGeometry(QtCore.QRect(724, 80, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label8.setFont(font)
         self.label8.setText('流量：')
         self.label8.setAlignment(Qt.AlignCenter)
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(792, 100, 100, 25))
+        self.label_6.setGeometry(QtCore.QRect(792, 80, 100, 25))
         self.label_6.setObjectName("label_6")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_6.setFont(font)
         self.label_6.setAlignment(Qt.AlignCenter)
-        # 输送辊马达转速
+        # 输送辊马达油压
         self.label9 = QLabel(self.centralwidget)
-        self.label9.setGeometry(QtCore.QRect(724, 125, 84, 25))
+        self.label9.setGeometry(QtCore.QRect(724, 105, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label9.setFont(font)
         self.label9.setText('压力：')
         self.label9.setAlignment(Qt.AlignCenter)
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(792, 125, 100, 25))
+        self.label_7.setGeometry(QtCore.QRect(792, 105, 100, 25))
         self.label_7.setObjectName("label_7")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_7.setFont(font)
         self.label_7.setAlignment(Qt.AlignCenter)
-        # 切段刀辊马达扭矩
+        self.label_7_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_7_2.setGeometry(QtCore.QRect(792, 130, 100, 25))
+        self.label_7_2.setObjectName("label_7")
+        font.setFamily("Arial")
+        font.setPointSize(15)
+        self.label_7_2.setFont(font)
+        self.label_7_2.setAlignment(Qt.AlignCenter)
+        # 切段刀辊马达流量
         self.label10 = QLabel(self.centralwidget)
-        self.label10.setGeometry(QtCore.QRect(893, 100, 84, 25))
+        self.label10.setGeometry(QtCore.QRect(893, 80, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label10.setFont(font)
         self.label10.setText('流量：')
         self.label10.setAlignment(Qt.AlignCenter)
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(961, 100, 100, 25))
+        self.label_8.setGeometry(QtCore.QRect(961, 80, 100, 25))
         self.label_8.setObjectName("label_8")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_8.setFont(font)
         self.label_8.setAlignment(Qt.AlignCenter)
-        # 切段刀辊马达转速
+        # 切段刀辊马达油压
         self.label11 = QLabel(self.centralwidget)
-        self.label11.setGeometry(QtCore.QRect(893, 125, 84, 25))
+        self.label11.setGeometry(QtCore.QRect(893, 105, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label11.setFont(font)
         self.label11.setText('压力：')
         self.label11.setAlignment(Qt.AlignCenter)
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(961, 125, 100, 25))
+        self.label_9.setGeometry(QtCore.QRect(961, 105, 100, 25))
         self.label_9.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_9.setFont(font)
         self.label_9.setAlignment(Qt.AlignCenter)
-        # 排风机马达扭矩
+        self.label_9_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_9_2.setGeometry(QtCore.QRect(961, 130, 100, 25))
+        self.label_9_2.setObjectName("label_9")
+        font.setFamily("Arial")
+        font.setPointSize(15)
+        self.label_9_2.setFont(font)
+        self.label_9_2.setAlignment(Qt.AlignCenter)
+        # 排风机马达流量
         self.label12 = QLabel(self.centralwidget)
-        self.label12.setGeometry(QtCore.QRect(1062, 100, 84, 25))
+        self.label12.setGeometry(QtCore.QRect(1062, 80, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label12.setFont(font)
         self.label12.setText('流量：')
         self.label12.setAlignment(Qt.AlignCenter)
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        self.label_10.setGeometry(QtCore.QRect(1130, 100, 100, 25))
+        self.label_10.setGeometry(QtCore.QRect(1130, 80, 100, 25))
         self.label_10.setObjectName("label_10")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_10.setFont(font)
         self.label_10.setAlignment(Qt.AlignCenter)
-        # 排风机马达转速
+        # 排风机马达油压
         self.label13 = QLabel(self.centralwidget)
-        self.label13.setGeometry(QtCore.QRect(1062, 125, 84, 25))
+        self.label13.setGeometry(QtCore.QRect(1062, 105, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label13.setFont(font)
         self.label13.setText('压力：')
         self.label13.setAlignment(Qt.AlignCenter)
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
-        self.label_11.setGeometry(QtCore.QRect(1130, 125, 100, 25))
+        self.label_11.setGeometry(QtCore.QRect(1130, 105, 100, 25))
         self.label_11.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_11.setFont(font)
         self.label_11.setAlignment(Qt.AlignCenter)
-        # 二级输送通道马达扭矩
+        self.label_11_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_11_2.setGeometry(QtCore.QRect(1130, 130, 100, 25))
+        self.label_11_2.setObjectName("label_9")
+        font.setFamily("Arial")
+        font.setPointSize(15)
+        self.label_11_2.setFont(font)
+        self.label_11_2.setAlignment(Qt.AlignCenter)
+        # 二级输送通道马达流量
         self.label14 = QLabel(self.centralwidget)
-        self.label14.setGeometry(QtCore.QRect(1231, 100, 84, 25))
+        self.label14.setGeometry(QtCore.QRect(1231, 80, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label14.setFont(font)
         self.label14.setText('流量：')
         self.label14.setAlignment(Qt.AlignCenter)
         self.label_12 = QtWidgets.QLabel(self.centralwidget)
-        self.label_12.setGeometry(QtCore.QRect(1299, 100, 100, 25))
+        self.label_12.setGeometry(QtCore.QRect(1299, 80, 100, 25))
         self.label_12.setObjectName("label_10")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_12.setFont(font)
         self.label_12.setAlignment(Qt.AlignCenter)
-        # 二级输送通道马达转速
+        # 二级输送通道马达油压
         self.label15 = QLabel(self.centralwidget)
-        self.label15.setGeometry(QtCore.QRect(1231, 125, 84, 25))
+        self.label15.setGeometry(QtCore.QRect(1231, 105, 84, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label15.setFont(font)
         self.label15.setText('压力：')
         self.label15.setAlignment(Qt.AlignCenter)
         self.label_13 = QtWidgets.QLabel(self.centralwidget)
-        self.label_13.setGeometry(QtCore.QRect(1299, 125, 100, 25))
+        self.label_13.setGeometry(QtCore.QRect(1299, 105, 100, 25))
         self.label_13.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_13.setFont(font)
         self.label_13.setAlignment(Qt.AlignCenter)
+        self.label_13_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_13_2.setGeometry(QtCore.QRect(1299, 130, 100, 25))
+        self.label_13_2.setObjectName("label_9")
+        font.setFamily("Arial")
+        font.setPointSize(15)
+        self.label_13_2.setFont(font)
+        self.label_13_2.setAlignment(Qt.AlignCenter)
 
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(60, 77, 400, 300))
@@ -353,25 +388,40 @@ class MainWindow(QMainWindow):
         self.pushButton_2.setText(_translate("history_data", "实时数据波形显示"))
         self.pushButton_3.setText(_translate("history_data", "历史数据"))
         self.pushButton_4.setText(_translate("history_data", "文件管理"))
+        self.label_4.setText('0L/min')
+        self.label_5.setText('0bar')
+        self.label_5_2.setText("0bar")
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict
-        genqieqiyouya = torque_real_data_dict.get('1_torque_ch', 0)
-        shusonggunyouya = torque_real_data_dict.get('2_torque_ch', 0)
-        qieduandaoyouya = torque_real_data_dict.get('3_torque_ch', 0)
-        paifengjiyouya = torque_real_data_dict.get('4_torque_ch', 0)
-        erjishusongyouya = torque_real_data_dict.get('5_torque_ch', 0)
-        self.label_4.setText(str(genqieqiyouya))
-        self.label_5.setText( "TextLabel")
-        self.label_6.setText(str(shusonggunyouya))
-        self.label_7.setText("TextLabel")
-        self.label_8.setText(str(qieduandaoyouya))
-        self.label_9.setText("TextLabel")
-        self.label_10.setText(str(paifengjiyouya))
-        self.label_11.setText("TextLabel")
-        self.label_12.setText(str(erjishusongyouya))
-        self.label_13.setText("TextLabel")
+        # from app.CloudConn.cane_harvester import torque_real_data_dict
+        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
+        # 各个马达流量
+        qieduandao_liuliang = flow_real_data_dict.get('flow_one', 0)
+        chuzhafengji_liuliang = flow_real_data_dict.get('flow_two', 0)
+        yijishusong_liuliang = flow_real_data_dict.get('flow_three', 0)
+        erjishusong_liuliang = flow_real_data_dict.get('flow_four', 0)
+        # 各个马达压力
+        qieduandao_yali_1 = ins_real_data_dict.get('fluid_one', 0)
+        qieduandao_yali_2 = ins_real_data_dict.get('fluid_two', 0)
+        chuzhafengji_yali_1 = ins_real_data_dict.get('fluid_three', 0)
+        chuzhafengji_yali_2 = ins_real_data_dict.get('fluid_four', 0)
+        yijishusong_yali_1 = ins_real_data_dict.get('fluid_five', 0)
+        yijishusong_yali_2 = ins_real_data_dict.get('fluid_six', 0)
+        erjishusong_yali_1 = ins_real_data_dict.get('fluid_senven', 0)
+        erjishusong_yali_2 = ins_real_data_dict.get('fluid_eight', 0)
+        self.label_6.setText(str(yijishusong_liuliang) + 'L/min')
+        self.label_7.setText(str(yijishusong_yali_1) + 'bar')
+        self.label_7_2.setText(str(yijishusong_yali_2) + 'bar')
+        self.label_8.setText(str(qieduandao_liuliang) + 'L/min')
+        self.label_9.setText(str(qieduandao_yali_1) + 'bar')
+        self.label_9_2.setText(str(qieduandao_yali_2) + 'bar')
+        self.label_10.setText(str(chuzhafengji_liuliang) + 'L/min')
+        self.label_11.setText(str(chuzhafengji_yali_1) + 'bar')
+        self.label_11_2.setText(str(chuzhafengji_yali_2) + 'bar')
+        self.label_12.setText(str(erjishusong_liuliang) + 'L/min')
+        self.label_13.setText(str(erjishusong_yali_1) + 'bar')
+        self.label_13_2.setText(str(erjishusong_yali_2) + 'bar')
 
 # 仪表盘数据——发动机转速
 class GaugePanel(QWidget):
@@ -400,15 +450,16 @@ class GaugePanel(QWidget):
         self.scaleMainNum = 10  # 主刻度数
         self.scaleSubNum = 10  # 主刻度被分割份数
         self.minValue = 0
-        self.maxValue = 1000  #200
-        self.title = '转速×1000r/min'
+        self.maxValue = 3000  #3000
+        self.title = '转速×100r/min'
         self.value = 0
-        self.minRadio = 1  # 缩小比例,用于计算刻度数字，表示一小格代表多少
-        self.decimals = 1  # 小数位数
+        self.minRadio = 100  # 缩小比例,用于计算刻度数字，表示一小格代表多少
+        self.decimals = 2  # 小数位数
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
         from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        # from app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('engine_speed', 0)
         self.value = float(self.value)
         # self.value = self.value + 1
@@ -530,7 +581,7 @@ class GaugePanel(QWidget):
         self.lcdDisplay.setGeometry(int(x), int(y), int(w), int(h))
 
         ss = '{:.' + str(self.decimals) + 'f}'
-        self.lcdDisplay.display(ss.format(self.value))   #ss.format(self.value)
+        self.lcdDisplay.display(ss.format(self.value/self.minRadio))   #ss.format(self.value)
 
     def drawIndicator(self, p):
         p.save()
@@ -559,7 +610,6 @@ class GaugePanel(QWidget):
         p.drawEllipse(-5, -5, 10, 10)
         p.restore()
 
-
 # 仪表盘数据——油压
 class GaugePanel2(GaugePanel):
     def __init__(self):
@@ -571,10 +621,13 @@ class GaugePanel2(GaugePanel):
         self.scaleMainNum = 2
         self.scaleSubNum = 5
         self.maxValue = 10
+        self.minRadio = 1  # 缩小比例,用于计算刻度数字，表示一小格代表多少
         self.title = '油压×100KPa'
+        self.decimals = 1
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
+        # from app.CloudConn.cane_harvester import ins_real_data_dict
         from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('oil_pressure', 0)
         self.value = float(self.value)
@@ -700,6 +753,7 @@ class GaugePanel3(GaugePanel2):
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
+        # from app.CloudConn.cane_harvester import ins_real_data_dict
         from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('water_temperature', 0)
         self.value = float(self.value)
@@ -710,12 +764,13 @@ class GaugePanel4(GaugePanel2):
         super(GaugePanel4,self).__init__()
         self.scaleMainNum = 6  # 主刻度数
         self.scaleSubNum = 5  # 主刻度被分割份数
-        self.maxValue = 32000
-        self.minRadio = 1000
+        self.maxValue = 32
+        self.minRadio = 1
         self.title = '电压V'
 
     @pyqtSlot()
     def testTimer_timeout_handle(self):
+        # from app.CloudConn.cane_harvester import ins_real_data_dict
         from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         self.value = ins_real_data_dict.get('battery_voltage', 0)
         self.value = float(self.value)

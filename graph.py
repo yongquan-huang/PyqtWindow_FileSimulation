@@ -7,7 +7,7 @@ import os
 import datetime
 
 # 列出E:\甘蔗机网关\cane11.6\run\run2020\env2019\env目录下所有扩展名为txt的文件（文件名）
-files = [fname for fname in os.listdir(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env') if fname.endswith('.txt')]
+files = [fname for fname in os.listdir('/home/rpdzkj/run/run2020/env2019/env/') if fname.endswith('.txt')]
 # print(files)
 class Table(QWidget):
     def __init__(self):
@@ -28,9 +28,9 @@ class Table(QWidget):
         # 将列宽锁死
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
 
-        path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env'
+        path = '/home/rpdzkj/run/run2020/env2019/env/'
         for row in range(len(files)):
-            file_path = path + '\\' + files[row]
+            file_path = path + '/' + files[row]
 
             # 获取文件大小
             fsize = int(os.path.getsize(file_path)) // 1000
@@ -38,7 +38,7 @@ class Table(QWidget):
             # print(str(fsize) + 'KB')
 
             # 获取文件最近的修改日期
-            ftime = os.path.getmtime(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env' + '\\' + files[row])
+            ftime = os.path.getmtime('/home/rpdzkj/run/run2020/env2019/env/' + '/' + files[row])
             date = datetime.datetime.fromtimestamp(ftime)
             ftime = date.strftime('%Y-%m-%d %H:%M:%S')
             # print(date.strftime('%Y-%m-%d %H:%M:%S'))

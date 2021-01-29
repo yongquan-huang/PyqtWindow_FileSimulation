@@ -175,11 +175,11 @@ class history_data(QWidget):
         self.label_2.setText(_translate("history_data", "水温"))
         self.label_3.setText(_translate("history_data", "油压"))
         self.label_4.setText(_translate("history_data", "发动机转速"))
-        self.label_5.setText(_translate("history_data", "根切器马达(油压      流量      )"))
-        self.label_6.setText(_translate("history_data", "输送辊马达(油压      流量      )"))
-        self.label_7.setText(_translate("history_data", "切断刀马达(油压      流量      )"))
-        self.label_8.setText(_translate("history_data", "排风机马达(油压      流量      )"))
-        self.label_9.setText(_translate("history_data", "二级输送通道(油压      流量      )"))
+        self.label_5.setText(_translate("history_data", "作业部件流量"))
+        self.label_6.setText(_translate("history_data", "输送辊马达压力"))
+        self.label_7.setText(_translate("history_data", "切断刀马达压力"))
+        self.label_8.setText(_translate("history_data", "排风机马达压力"))
+        self.label_9.setText(_translate("history_data", "二级输送通道压力"))
         self.pushButton.setText(_translate("history_data", "实时数据"))
         self.pushButton_2.setText(_translate("history_data", "实时数据波形显示"))
         self.pushButton_3.setText(_translate("history_data", "历史数据"))
@@ -189,59 +189,59 @@ class history_data(QWidget):
         self.comboBox.setItemText(2, _translate("history_data", "文件3"))
         self.comboBox.setItemText(3, _translate("history_data", "文件4"))
 
-    def paintEvent(self, e):  #绘制曲线图各文字所对应的线
-        qp = QPainter()
-        qp.begin(self)
-        # 水温红色
-        pen = QPen(Qt.red, 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(170,326,184,326)
-        # 油压橙色
-        pen.setColor(QColor(245, 154,35))
-        pen.setStyle(Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(530, 326, 544, 326)
-        # 发动机转速黄色
-        pen = QPen(Qt.yellow, 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(910, 326, 924, 326)
-        # # 根切器马达黑色
-        pen = QPen(Qt.black, 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(1247, 326, 1261, 326)
-        pen = QPen(Qt.gray, 1, Qt.DashLine)
-        qp.setPen(pen)
-        qp.drawLine(1290, 326, 1304, 326)
-        # 输送辊马达蓝色
-        pen = QPen(Qt.blue, 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(177, 550, 191, 550)
-        pen = QPen(QColor(129,211,248), 1, Qt.DashLine)
-        qp.setPen(pen)
-        qp.drawLine(220, 550, 234, 550)
-        # 切断刀马达绿色
-        pen = QPen(QColor(75, 121, 2), 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(536, 550, 550, 550)
-        pen = QPen(QColor(202, 249, 130), 1, Qt.DashLine)
-        qp.setPen(pen)
-        qp.drawLine(580, 550, 594, 550)
-        # 排风机马达粉色
-        pen = QPen(QColor(240, 12, 203), 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(887, 550, 901, 550)
-        pen = QPen(QColor(255, 192, 203), 1, Qt.DashLine)
-        qp.setPen(pen)
-        qp.drawLine(930, 550, 944, 550)
-        # 二级输送通道马达棕色
-        pen = QPen(QColor(165, 42, 42), 1, Qt.SolidLine)
-        qp.setPen(pen)
-        qp.drawLine(1259, 550, 1273, 550)
-        pen = QPen(QColor(205, 133, 63), 1, Qt.DashLine)
-        qp.setPen(pen)
-        qp.drawLine(1303, 550, 1317, 550)
-
-        qp.end()
+    # def paintEvent(self, e):  #绘制曲线图各文字所对应的线
+    #     qp = QPainter()
+    #     qp.begin(self)
+    #     # 水温红色
+    #     pen = QPen(Qt.red, 1, Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(170,326,184,326)
+    #     # 油压橙色
+    #     pen.setColor(QColor(245, 154,35))
+    #     pen.setStyle(Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(530, 326, 544, 326)
+    #     # 发动机转速黄色
+    #     pen = QPen(Qt.yellow, 1, Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(910, 326, 924, 326)
+    #     # # 根切器马达黑色
+    #     pen = QPen(Qt.black, 1, Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(1247, 326, 1261, 326)
+    #     pen = QPen(Qt.gray, 1, Qt.DashLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(1290, 326, 1304, 326)
+    #     # 输送辊马达蓝色
+    #     pen = QPen(Qt.blue, 1, Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(177, 550, 191, 550)
+    #     pen = QPen(QColor(129,211,248), 1, Qt.DashLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(220, 550, 234, 550)
+    #     # 切断刀马达绿色
+    #     pen = QPen(QColor(75, 121, 2), 1, Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(536, 550, 550, 550)
+    #     pen = QPen(QColor(202, 249, 130), 1, Qt.DashLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(580, 550, 594, 550)
+    #     # 排风机马达粉色
+    #     pen = QPen(QColor(240, 12, 203), 1, Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(887, 550, 901, 550)
+    #     pen = QPen(QColor(255, 192, 203), 1, Qt.DashLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(930, 550, 944, 550)
+    #     # 二级输送通道马达棕色
+    #     pen = QPen(QColor(165, 42, 42), 1, Qt.SolidLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(1259, 550, 1273, 550)
+    #     pen = QPen(QColor(205, 133, 63), 1, Qt.DashLine)
+    #     qp.setPen(pen)
+    #     qp.drawLine(1303, 550, 1317, 550)
+    #
+    #     qp.end()
 
     def MatplotlibWidget(self):
         time_x1 = []
@@ -249,38 +249,54 @@ class history_data(QWidget):
         shuiwen_y = []
         youya_y = []
         fadongji_y = []
-        genqieqiyouya_y = []
+        genqieqiyali_1_y = []
+        genqieqiyali_2_y = []
         genqieqiliuliang_y = []
-        shusonggunyouya_y = []
+        shusonggunyali_1_y = []
+        shusonggunyali_2_y = []
         shusonggunliuliang_y = []
-        qieduandaoyouya_y = []
+        qieduandaoyali_1_y = []
+        qieduandaoyali_2_y = []
         qieduandaoliuliang_y = []
-        paifengjiyouya_y = []
+        paifengjiyali_1_y = []
+        paifengjiyali_2_y = []
         paifengjiliuliang_y = []
-        erjishusongyouya_y = []
+        erjishusongyali_1_y = []
+        erjishusongyali_2_y = []
         erjishusongliuliang_y = []
 
-        # 读取扭矩或者是5个传感器油压油量
-        with open(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\torque_data.txt') as f:
+        # 读取扭矩或者是5个传感器压力
+        # with open(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\torque_data.txt') as f:
+        with open('/home/rpdzkj/run/run2020/env2019/env/ins_data.txt') as f:
             line = f.readline()
             while line:
-                torque_data = eval(line)
-                time_x1.append(torque_data['time'])
-                genqieqiyouya_y.append(torque_data['1_torque_ch'])
-                shusonggunyouya_y.append(torque_data['2_torque_ch'])
-                qieduandaoyouya_y.append(torque_data['3_torque_ch'])
-                paifengjiyouya_y.append(torque_data['4_torque_ch'])
-                erjishusongyouya_y.append(torque_data['5_torque_ch'])
-                line = f.readline()
-        # 读取仪表盘数据：转速，水温，油压
-        with open(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\ins_data.txt') as f:
-            line2 = f.readline()
-            while line2:
-                ins_data = eval(line2)
-                time_x2.append((ins_data['time']))
+                ins_data = eval(line)
+                time_x1.append(ins_data['time'])
                 shuiwen_y.append(ins_data['water_temperature'])
                 youya_y.append(ins_data['oil_pressure'])
                 fadongji_y.append(ins_data['engine_speed'])
+                qieduandaoyali_1_y.append(ins_data['fluid_one'])
+                qieduandaoyali_2_y.append(ins_data['fluid_two'])
+                paifengjiyali_1_y.append(ins_data['fluid_three'])
+                paifengjiyali_2_y.append(ins_data['fluid_four'])
+                shusonggunyali_1_y.append(ins_data['fluid_five'])
+                shusonggunyali_2_y.append(ins_data['fluid_six'])
+                erjishusongyali_1_y.append(ins_data['fluid_senven'])
+                erjishusongyali_2_y.append(ins_data['fluid_eight'])
+                line = f.readline()
+        # 读取仪表盘数据：转速，水温，油压
+        # with open(r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env\ins_data.txt') as f:
+        # 读取5个传感器流量
+        with open('/home/rpdzkj/run/run2020/env2019/env/flow_data.txt') as f:
+            line2 = f.readline()
+            while line2:
+                flow_data = eval(line2)
+                time_x2.append(flow_data['time'])
+                # time_x2.append((ins_data['time']))
+                qieduandaoliuliang_y.append(flow_data['flow_one'])
+                paifengjiliuliang_y.append(flow_data['flow_two'])
+                shusonggunliuliang_y.append(flow_data['flow_three'])
+                erjishusongliuliang_y.append(flow_data['flow_four'])
                 line2 = f.readline()
 
         # 水温图
@@ -288,61 +304,61 @@ class history_data(QWidget):
         # self.shuiwen.history_plot()
         # x = [i for i in range(1,11)]  模拟数据
         # y1 = [random.randint(0, 100) for i in range(10)]
-        self.shuiwen.shuiwen_line(time_x2, shuiwen_y)
+        self.shuiwen.shuiwen_line(time_x1, shuiwen_y)
         self.gridLayout.addWidget(self.shuiwen)
         # 油压图
         self.youya = History_Canvas()
         # self.youya.history_plot()
         # x = [i for i in range(1, 11)]
         # y2 = [random.randint(0, 100) for i in range(10)]
-        self.youya.youya_line(time_x2, youya_y)
+        self.youya.youya_line(time_x1, youya_y)
         self.gridLayout_2.addWidget(self.youya)
         # 发动机转速
         self.fadongji = History_Canvas()
         # self.fadongji.history_plot()
         # x = [i for i in range(1, 11)]
         # y3 = [random.randint(0, 100) for i in range(10)]
-        self.fadongji.fadongji_line(time_x2, fadongji_y)
+        self.fadongji.fadongji_line(time_x1, fadongji_y)
         self.gridLayout_3.addWidget(self.fadongji)
-        # 根切器马达
-        self.genqieqi = History_Canvas()
+        # 作业部件流量   （根切器马达）
+        self.liuliang = History_Canvas()
         # self.genqieqi.history_plot()
         # x = [i for i in range(1, 11)]
         # y4 = [random.randint(0, 100) for i in range(10)]
         # y5 = [random.randint(0, 100) for i in range(10)]
-        self.genqieqi.genqieji_line(time_x1, genqieqiyouya_y)
-        self.gridLayout_4.addWidget(self.genqieqi)
-        # 输送辊马达
+        self.liuliang.liuliang_line(time_x2, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y, erjishusongliuliang_y)
+        self.gridLayout_4.addWidget(self.liuliang)
+        # 输送辊马达压力
         self.shusonggun = History_Canvas()
         # self.shusonggun.history_plot()
         # # x = [i for i in range(1, 11)]
         # # y6 = [random.randint(0, 100) for i in range(10)]
         # # y7 = [random.randint(0, 100) for i in range(10)]
-        self.shusonggun.shusonggun_line(time_x1, shusonggunyouya_y)
+        self.shusonggun.shusonggun_line(time_x1, shusonggunyali_1_y, shusonggunyali_2_y)
         self.gridLayout_5.addWidget(self.shusonggun)
-        # # 切断刀马达
+        # # 切断刀马达压力
         self.qieduandao = History_Canvas()
         # self.qieduandao.history_plot()
         # # x = [i for i in range(1, 11)]
         # # y8 = [random.randint(0, 100) for i in range(10)]
         # # y9 = [random.randint(0, 100) for i in range(10)]
-        self.qieduandao.qieduandao_line(time_x1, qieduandaoyouya_y)
+        self.qieduandao.qieduandao_line(time_x1, qieduandaoyali_1_y, qieduandaoyali_2_y)
         self.gridLayout_6.addWidget(self.qieduandao)
-        # # 排风机马达
+        # # 排风机马达压力
         self.paifengji = History_Canvas()
         # self.paifengji.history_plot()
         # # x = [i for i in range(1, 11)]
         # # y10 = [random.randint(0, 100) for i in range(10)]
         # # y11 = [random.randint(0, 100) for i in range(10)]
-        self.paifengji.paifengji_line(time_x1, paifengjiyouya_y)
+        self.paifengji.paifengji_line(time_x1, paifengjiyali_1_y, paifengjiyali_2_y)
         self.gridLayout_7.addWidget(self.paifengji)
-        # # 二级输送
+        # # 二级输送压力
         self.erjishusong = History_Canvas()
         # self.erjishusong.history_plot()
         # # x = [i for i in range(1, 11)]
         # # y10 = [random.randint(0, 100) for i in range(10)]
         # # y11 = [random.randint(0, 100) for i in range(10)]
-        self.erjishusong.erjishusong_line(time_x1, erjishusongyouya_y)
+        self.erjishusong.erjishusong_line(time_x1, erjishusongyali_1_y, erjishusongyali_2_y)
         self.gridLayout_8.addWidget(self.erjishusong)
 
 class History_Canvas(FigureCanvas):  #画板
@@ -372,6 +388,7 @@ class History_Canvas(FigureCanvas):  #画板
         self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))   #设置y轴刻度的间隔
         self.axes.plot(x, y1, color='red')
         self.axes.grid(True)
+        self.axes.legend(loc='upper left')  # 图例左上角
     def youya_line(self,x,y2):
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
@@ -380,6 +397,7 @@ class History_Canvas(FigureCanvas):  #画板
         self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))  # 设置y轴刻度的间隔
         self.axes.plot(x, y2, color='orange')
         self.axes.grid(True)
+        self.axes.legend(loc='upper left')  # 左上角
     def fadongji_line(self,x,y3):
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
@@ -388,46 +406,57 @@ class History_Canvas(FigureCanvas):  #画板
         self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))  # 设置y轴刻度的间隔
         self.axes.plot(x, y3, color='yellow')
         self.axes.grid(True)
-    def genqieji_line(self,x,y4,):
+        self.axes.legend(loc='upper left')  # 左上角
+    def liuliang_line(self,x,y4_1,y4_2,y4_3,y4_4):
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  #格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
         self.axes.xaxis.set_major_formatter(xfmt)
-        self.axes.plot(x, y4, color='black')
-        # self.axes.plot(x, y5, color='gray',linestyle='--')
-        # self.axes.grid(True)
-    def shusonggun_line(self,x,y6,):
+        self.axes.plot(x, y4_1, color='#81D3F8', linestyle='--', label='一级输送流量')
+        self.axes.plot(x, y4_2, color='#CAF982', linestyle='--', label='切段刀流量')
+        self.axes.plot(x, y4_3, color='#FFC0CB', linestyle='--', label='除杂风机流量')
+        self.axes.plot(x, y4_4, color='#CD853F', linestyle='--', label='二级输送流量')
+        self.axes.grid(True)
+        self.axes.legend(loc='upper left')  # 左上角
+    def shusonggun_line(self,x,y6_1,y6_2):
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
         self.axes.xaxis.set_major_formatter(xfmt)
-        self.axes.plot(x, y6, color='blue')
+        self.axes.plot(x, y6_1, color='#81D3F8', label='压力1')
+        self.axes.plot(x, y6_2, color='blue', label='压力2')
         self.axes.grid(True)
+        self.axes.legend(loc='upper left')  # 左上角
         # self.axes.plot(x, y7, color='#81D3F8',linestyle='--')
         # self.axes.grid(True)
-    def qieduandao_line(self,x,y8,):
+    def qieduandao_line(self,x,y8_1,y8_2):
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
         self.axes.xaxis.set_major_formatter(xfmt)
-        self.axes.plot(x, y8, color='#4B7902')
+        self.axes.plot(x, y8_1, color='#CAF982', label='压力1')
+        self.axes.plot(x, y8_2, color='#4B7902', label='压力2')
         self.axes.grid(True)
+        self.axes.legend(loc='upper left')  # 左上角
         # self.axes.plot(x, y9, color='#CAF982',linestyle='--')
         # self.axes.grid(True)
-    def paifengji_line(self,x,y10,):
+    def paifengji_line(self,x,y10_1,y10_2):
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
         self.axes.xaxis.set_major_formatter(xfmt)
-        self.axes.plot(x, y10, color='#F00CCB')
+        self.axes.plot(x, y10_1, color='#FFC0CB', label='压力1')
+        self.axes.plot(x, y10_2, color='#F00CCB', label='压力2')
         self.axes.grid(True)
+        self.axes.legend(loc='upper left')  # 左上角
         # self.axes.plot(x, y11, color='#FFC0CB',linestyle='--')
         # self.axes.grid(True)
-    def erjishusong_line(self,x,y12,):
+    def erjishusong_line(self,x,y12_1,y12_2):
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
         self.axes.xaxis.set_major_formatter(xfmt)
-        self.axes.plot(x, y12, color='#A52A2A')
+        self.axes.plot(x, y12_1, color='#CD853F', label='压力1')
+        self.axes.plot(x, y12_2, color='#A52A2A', label='压力2')
         self.axes.grid(True)
+        self.axes.legend(loc='upper left')  # 左上角
         # self.axes.plot(x, y13, color='#CD853F',linestyle='--')
         # self.axes.grid(True)
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
