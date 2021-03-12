@@ -7,8 +7,14 @@ import os
 import datetime
 
 # 列出E:\甘蔗机网关\cane11.6\run\run2020\env2019\env目录下所有扩展名为txt的文件（文件名）
-files = [fname for fname in os.listdir('/home/rpdzkj/run/run2020/env2019/env/') if fname.endswith('.txt')]
-# print(files)
+# f1 = ((r'.\txt文件\firstFile5', fname) for fname in os.listdir(r'.\txt文件\firstFile5') if fname.endswith('.txt'))
+# print(tuple(f1))
+files_1 = tuple(((r'.\txt文件\firstFile5', fname) for fname in os.listdir(r'.\txt文件\firstFile5') if fname.endswith('.txt')))
+files_2 = tuple(((r'.\txt文件\third10', fname) for fname in os.listdir(r'.\txt文件\third10') if fname.endswith('.txt')))
+files_3 = tuple(((r'.\txt文件\second15', fname) for fname in os.listdir(r'.\txt文件\second15') if fname.endswith('.txt')))
+files_4 = tuple(((r'.\txt文件\four20', fname) for fname in os.listdir(r'.\txt文件\four20') if fname.endswith('.txt')))
+files = files_1 + files_2 + files_3 + files_4
+#  (('.\\txt文件\\firstFile5', '5flow_data.txt'), ('.\\txt文件\\firstFile5', '5ins_data.txt'), ('.\\txt文件\\firstFile5', '5oilPressure_data.txt')......)
 class Table(QWidget):
     def __init__(self):
         super().__init__()
@@ -28,9 +34,9 @@ class Table(QWidget):
         # 将列宽锁死
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
 
-        path = '/home/rpdzkj/run/run2020/env2019/env/'
+        path = r'.\txt文件'
         for row in range(len(files)):
-            file_path = path + '/' + files[row]
+            file_path = files[row][0] + '\\' + files[row][1]
 
             # 获取文件大小
             fsize = int(os.path.getsize(file_path)) // 1000
@@ -38,7 +44,7 @@ class Table(QWidget):
             # print(str(fsize) + 'KB')
 
             # 获取文件最近的修改日期
-            ftime = os.path.getmtime('/home/rpdzkj/run/run2020/env2019/env/' + '/' + files[row])
+            ftime = os.path.getmtime(file_path)
             date = datetime.datetime.fromtimestamp(ftime)
             ftime = date.strftime('%Y-%m-%d %H:%M:%S')
             # print(date.strftime('%Y-%m-%d %H:%M:%S'))
@@ -47,7 +53,7 @@ class Table(QWidget):
             checkBox = QCheckBox()
 
             self.tableWidget.setCellWidget(row, 0, checkBox)
-            fname_item = QTableWidgetItem(files[row])
+            fname_item = QTableWidgetItem(files[row][1])
             ftime_item = QTableWidgetItem(ftime)
             fsize_item = QTableWidgetItem(fsize)
             # 设置文本居中

@@ -10,6 +10,7 @@ import sys
 # from SerialCommunication import genqieqiyouya_y, genqieqiliuliang_y, shusonggunyouya_y, shusonggunliuliang_y,qieduandaoyouya_y, \
 # qieduandaoliuliang_y, paifengjiyouya_y, paifengjiliuliang_y, erjishusongyouya_y, erjishusongliuliang_y, shuiwen_y, youya_y, fadongji_y
 # import apprcc_rc
+from data_dict import ins_real_data_dict, flow_real_data_dict, oilPressure_real_data_dict
 
 # 界面图片、文字以及5个扭矩，转速数据 扭矩type是数字，转速type是字符串，因此要转换成float
 class MainWindow(QMainWindow):
@@ -72,6 +73,7 @@ class MainWindow(QMainWindow):
 
         # 关键作业部件工况参数马达字体textlabel建立和设置
         # 根切器马达
+        
         self.label1 = QLabel(self)
         self.label1.setGeometry(QtCore.QRect(555, 70, 169, 30))
         font.setFamily("Arial")
@@ -369,19 +371,20 @@ class MainWindow(QMainWindow):
         self.horizontalLayout.addWidget(self.pushButton_4)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.row = 0 # 定义行数，数据从ins_real_data_dict，flow_real_data_dict 读取，实现逐行更新
 
         self.timer = QTimer()  # 窗口重绘定时器，负责每次刷新窗口
         self.timer.timeout.connect(self.update)
-        self.timer.start(100)  # 单位为毫秒
+        self.timer.start(1000)  # 单位为毫秒
 
         self.testTimer = QTimer()  # 数据定时器，负责每次刷新数据
         self.testTimer.timeout.connect(self.testTimer_timeout_handle)
-        self.testTimer.start(10)
+        self.testTimer.start(1000)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "实时数据"))
-        # self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
+        # self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))e
         # self.addWinAction.setText(_translate("MainWindow", "显示仪表盘"))
         # self.addWinAction.setToolTip(_translate("MainWindow", "显示仪表盘"))
         self.pushButton.setText(_translate("history_data", "实时数据"))
@@ -395,21 +398,37 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def testTimer_timeout_handle(self):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
         # 各个马达流量
-        qieduandao_liuliang = flow_real_data_dict.get('flow_one', 0)
-        chuzhafengji_liuliang = flow_real_data_dict.get('flow_two', 0)
-        yijishusong_liuliang = flow_real_data_dict.get('flow_three', 0)
-        erjishusong_liuliang = flow_real_data_dict.get('flow_four', 0)
-        # 各个马达压力
-        qieduandao_yali_1 = ins_real_data_dict.get('fluid_one', 0)
-        qieduandao_yali_2 = ins_real_data_dict.get('fluid_two', 0)
-        chuzhafengji_yali_1 = ins_real_data_dict.get('fluid_three', 0)
-        chuzhafengji_yali_2 = ins_real_data_dict.get('fluid_four', 0)
-        yijishusong_yali_1 = ins_real_data_dict.get('fluid_five', 0)
-        yijishusong_yali_2 = ins_real_data_dict.get('fluid_six', 0)
-        erjishusong_yali_1 = ins_real_data_dict.get('fluid_senven', 0)
-        erjishusong_yali_2 = ins_real_data_dict.get('fluid_eight', 0)
+        try:
+            qieduandao_liuliang = flow_real_data_dict[self.row].get('2_flow_ch', 0)
+            chuzhafengji_liuliang = flow_real_data_dict[self.row].get('3_flow_ch', 0)
+            yijishusong_liuliang = flow_real_data_dict[self.row].get('1_flow_ch', 0)
+            erjishusong_liuliang = flow_real_data_dict[self.row].get('4_flow_ch', 0)
+            # 各个马达压力
+            qieduandao_yali_1 = oilPressure_real_data_dict[self.row].get('6_oilPressure_ch', 0)
+            qieduandao_yali_2 = oilPressure_real_data_dict[self.row].get('2_oilPressure_ch', 0)
+            chuzhafengji_yali_1 = oilPressure_real_data_dict[self.row].get('7_oilPressure_ch', 0)
+            chuzhafengji_yali_2 = oilPressure_real_data_dict[self.row].get('3_oilPressure_ch', 0)
+            yijishusong_yali_1 = oilPressure_real_data_dict[self.row].get('5_oilPressure_ch', 0)
+            yijishusong_yali_2 = oilPressure_real_data_dict[self.row].get('1_oilPressure_ch', 0)
+            erjishusong_yali_1 = oilPressure_real_data_dict[self.row].get('8_oilPressure_ch', 0)
+            erjishusong_yali_2 = oilPressure_real_data_dict[self.row].get('4_oilPressure_ch', 0)
+            self.row += 1
+        except:
+            qieduandao_liuliang = 0
+            chuzhafengji_liuliang = 0
+            yijishusong_liuliang = 0
+            erjishusong_liuliang = 0
+            # 各个马达压力
+            qieduandao_yali_1 = 0
+            qieduandao_yali_2 = 0
+            chuzhafengji_yali_1 = 0
+            chuzhafengji_yali_2 = 0
+            yijishusong_yali_1 = 0
+            yijishusong_yali_2 = 0
+            erjishusong_yali_1 = 0
+            erjishusong_yali_2 = 0
         self.label_6.setText(str(yijishusong_liuliang) + 'L/min')
         self.label_7.setText(str(yijishusong_yali_1) + 'bar')
         self.label_7_2.setText(str(yijishusong_yali_2) + 'bar')
@@ -433,11 +452,11 @@ class GaugePanel(QWidget):
 
         self.timer = QTimer()  # 窗口重绘定时器，负责每次刷新窗口
         self.timer.timeout.connect(self.update)
-        self.timer.start(100) #单位为毫秒
+        self.timer.start(1000) #单位为毫秒
 
         self.testTimer = QTimer()  #数据定时器，负责每次刷新数据
         self.testTimer.timeout.connect(self.testTimer_timeout_handle)
-        self.testTimer.start(10)
+        self.testTimer.start(1000)
 
         self.lcdDisplay = QLCDNumber(self) #数据显示框
         self.lcdDisplay.setDigitCount(5)   # 数据显示框显示位数
@@ -456,12 +475,19 @@ class GaugePanel(QWidget):
         self.minRadio = 100  # 缩小比例,用于计算刻度数字，表示一小格代表多少
         self.decimals = 2  # 小数位数
 
+        self.row = 0
+
     @pyqtSlot()
     def testTimer_timeout_handle(self):
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
         # from app.CloudConn.cane_harvester import ins_real_data_dict
-        self.value = ins_real_data_dict.get('engine_speed', 0)
+        try:
+            self.value = ins_real_data_dict[self.row].get('engine_speed', 0)
+            self.row += 1
+        except:
+            self.value = 0
         self.value = float(self.value)
+        # print('{}:{}'.format(self.row, self.value))
         # self.value = self.value + 1
         # if self.value > self.maxValue:
         #     self.value = self.minValue
@@ -625,11 +651,17 @@ class GaugePanel2(GaugePanel):
         self.title = '油压×100KPa'
         self.decimals = 1
 
+        self.row = 0
+
     @pyqtSlot()
     def testTimer_timeout_handle(self):
         # from app.CloudConn.cane_harvester import ins_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
-        self.value = ins_real_data_dict.get('oil_pressure', 0)
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        try:
+            self.value = ins_real_data_dict[self.row].get('oil_pressure', 0)
+            self.row += 1
+        except:
+            self.value = 0
         self.value = float(self.value)
 
     def drawValue(self, p):
@@ -751,11 +783,17 @@ class GaugePanel3(GaugePanel2):
         self.maxValue = 120
         self.title = '水温℃'
 
+        self.row = 0
+
     @pyqtSlot()
     def testTimer_timeout_handle(self):
         # from app.CloudConn.cane_harvester import ins_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
-        self.value = ins_real_data_dict.get('water_temperature', 0)
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        try:
+            self.value = ins_real_data_dict[self.row].get('water_temperature', 0)
+            self.row += 1
+        except:
+            self.value = 0
         self.value = float(self.value)
 
 # 仪表盘数据——电池电压
@@ -768,23 +806,32 @@ class GaugePanel4(GaugePanel2):
         self.minRadio = 1
         self.title = '电压V'
 
+        self.row = 0
+
     @pyqtSlot()
     def testTimer_timeout_handle(self):
         # from app.CloudConn.cane_harvester import ins_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
-        self.value = ins_real_data_dict.get('battery_voltage', 0)
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        try:
+            self.value = ins_real_data_dict[self.row].get('battery_voltage', 0)
+            self.row += 1
+        except:
+            self.value = 0
         self.value = float(self.value)
+        # print(self.value)
 
 # 完整界面展示
 class MainForm(MainWindow):
+    '''完整界面，继承工况参数界面，然后嵌入仪表盘数据'''
+
     def __init__(self):
         super(MainForm, self).__init__()
         self.setupUi(self)
 
-        self.child = GaugePanel()  #会在下面定义子窗口类childrenForm转速表
-        self.child2 = GaugePanel2()
-        self.child3= GaugePanel3()
-        self.child4 = GaugePanel4()
+        self.child = GaugePanel()    # 发动机转速
+        self.child2 = GaugePanel2()  # 油压
+        self.child3= GaugePanel3()   # 水温
+        self.child4 = GaugePanel4()  # 电池电压
         # 单击actionTst, 子窗口就会显示在主窗口的MaingridLayout中
         self.MaingridLayout.addWidget(self.child)
         self.child.show()

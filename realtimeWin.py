@@ -8,6 +8,7 @@ import random
 from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
 # from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict,ins_real_data_dict
+from data_dict import ins_real_data_dict, flow_real_data_dict, oilPressure_real_data_dict
 
 class realtime_data(QWidget):
     def __init__(self):
@@ -241,8 +242,8 @@ class realtime_data(QWidget):
         # 根切器图
         self.genqieqi = Genqieqi_Canvas()
         self.gridLayout_4.addWidget(self.genqieqi)
-        # 输送辊图
-        self.shusongun = Shusonggun_Canvas()
+        # 一级输送图
+        self.shusongun = Yijishusong_Canvas()
         self.gridLayout_5.addWidget(self.shusongun)
         # 切断刀图
         self.qieduandao = Qieduandao_Canvas()
@@ -272,12 +273,18 @@ class Shuiwen_Canvas(FigureCanvas):
 
         self.timer = QtCore.QTimer(self)   # 窗口重绘定时器
         self.timer.timeout.connect(self.line)
-        self.timer.start(1000)
+        self.timer.start(100)
+
+        self.row = 0
 
     def line(self):
         # from app.CloudConn.cane_harvester import ins_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
-        self.data_y.append(float(ins_real_data_dict.get('water_temperature', 0)))
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        try:
+            self.data_y.append(float(ins_real_data_dict[self.row].get('water_temperature', 0)))
+            self.row += 1
+        except:
+            self.data_y.append(0)
         self.axes.plot(self.data_y, color='red', label='水温')
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
@@ -294,8 +301,12 @@ class Youya_Canvas(Shuiwen_Canvas):
 
     def line(self):
         # from app.CloudConn.cane_harvester import ins_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
-        self.data_y.append(float(ins_real_data_dict.get('oil_pressure', 0)))
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        try:
+            self.data_y.append(float(ins_real_data_dict[self.row].get('oil_pressure', 0)))
+            self.row += 1
+        except:
+            self.data_y.append(0)
         self.axes.plot(self.data_y, color='orange', label='油压')
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
@@ -312,8 +323,13 @@ class Fadongji_Canvas(Shuiwen_Canvas):
 
     def line(self):
         # from app.CloudConn.cane_harvester import ins_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
-        self.data_y.append(float(ins_real_data_dict.get('engine_speed', 0)))
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict
+        try:
+            self.data_y.append(float(ins_real_data_dict[self.row].get('engine_speed', 0)))
+            self.row += 1
+        except:
+            self.data_y.append(0)
+        # print('{}:{}'.format(self.row, self.data_y[-1]))
         self.axes.plot(self.data_y, color='yellow', label='转速')
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
@@ -334,10 +350,16 @@ class Genqieqi_Canvas(Shuiwen_Canvas):
 
     def line(self):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
-        self.liuliang_y.append(flow_real_data_dict.get('flow_', 0))   # 暂时不测，直接用'flow_',字典里面无flow_键
-        self.yali_1_y.append(ins_real_data_dict.get('fluid_', 0))    # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-        self.yali_2_y.append(ins_real_data_dict.get('fluid_', 0))
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
+        try:
+            self.liuliang_y.append(flow_real_data_dict[self.row].get('flow_', 0))   # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(ins_real_data_dict[self.row].get('fluid_', 0))    # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(ins_real_data_dict[self.row].get('fluid_', 0))
+            self.row += 1
+        except:
+            self.liuliang_y.append(0)
+            self.yali_1_y.append(0)
+            self.yali_2_y.append(0)
         self.axes.plot(self.liuliang_y, color='black', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='black', label='压力1')
         self.axes.plot(self.yali_2_y, color='gray', label='压力2')
@@ -350,17 +372,23 @@ class Genqieqi_Canvas(Shuiwen_Canvas):
             self.yali_2_y = self.yali_2_y[1:]
         self.axes.cla()  # 画布清空
 
-class Shusonggun_Canvas(Genqieqi_Canvas):
-    '''输送辊图类'''
+class Yijishusong_Canvas(Genqieqi_Canvas):
+    '''一级输送图类'''
     def __init__(self, width=8.56, height=3.83, dpi=100):
-        super(Shusonggun_Canvas, self).__init__(width, height, dpi)
+        super(Yijishusong_Canvas, self).__init__(width, height, dpi)
 
     def line(self):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
-        self.liuliang_y.append(flow_real_data_dict.get('flow_three', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
-        self.yali_1_y.append(ins_real_data_dict.get('fluid_five', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-        self.yali_2_y.append(ins_real_data_dict.get('fluid_six', 0))
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
+        try:
+            self.liuliang_y.append(flow_real_data_dict[self.row].get('1_flow_ch', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(oilPressure_real_data_dict[self.row].get('5_oilPressure_ch', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(oilPressure_real_data_dict[self.row].get('1_oilPressure_ch', 0))
+            self.row += 1
+        except:
+            self.liuliang_y.append(0)
+            self.yali_1_y.append(0)
+            self.yali_2_y.append(0)
         self.axes.plot(self.liuliang_y, color='#81D3F8', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#81D3F8', label='压力1')
         self.axes.plot(self.yali_2_y, color='blue', label='压力2')
@@ -381,10 +409,15 @@ class Qieduandao_Canvas(Genqieqi_Canvas):
 
     def line(self):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
-        self.liuliang_y.append(flow_real_data_dict.get('flow_one', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
-        self.yali_1_y.append(ins_real_data_dict.get('fluid_one', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-        self.yali_2_y.append(ins_real_data_dict.get('fluid_two', 0))
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
+        try:
+            self.liuliang_y.append(flow_real_data_dict[self.row].get('2_flow_ch', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(oilPressure_real_data_dict[self.row].get('6_oilPressure_ch', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(oilPressure_real_data_dict[self.row].get('2_oilPressure_ch', 0))
+        except:
+            self.liuliang_y.append(0)
+            self.yali_1_y.append(0)
+            self.yali_2_y.append(0)
         self.axes.plot(self.liuliang_y, color='#CAF982', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#CAF982', label='压力1')
         self.axes.plot(self.yali_2_y, color='#4B7902', label='压力2')
@@ -405,10 +438,16 @@ class Paifengji_Canvas(Genqieqi_Canvas):
 
     def line(self):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
-        self.liuliang_y.append(flow_real_data_dict.get('flow_two', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
-        self.yali_1_y.append(ins_real_data_dict.get('fluid_three', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-        self.yali_2_y.append(ins_real_data_dict.get('fluid_four', 0))
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
+        try:
+            self.liuliang_y.append(flow_real_data_dict[self.row].get('3_flow_ch', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(oilPressure_real_data_dict[self.row].get('7_oilPressure_ch', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(oilPressure_real_data_dict[self.row].get('3_oilPressure_ch', 0))
+            self.row += 1
+        except:
+            self.liuliang_y.append(0)
+            self.yali_1_y.append(0)
+            self.yali_2_y.append(0)
         self.axes.plot(self.liuliang_y, color='#FFC0CB', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#FFC0CB', label='压力1')
         self.axes.plot(self.yali_2_y, color='#F00CCB', label='压力2')
@@ -428,11 +467,17 @@ class Erjishusong_Canvas(Genqieqi_Canvas):
         super(Erjishusong_Canvas, self).__init__(width, height, dpi)
 
     def line(self):
-        from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
+        # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
         # from app.CloudConn.cane_harvester import torque_real_data_dict
-        self.liuliang_y.append(flow_real_data_dict.get('flow_four', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
-        self.yali_1_y.append(ins_real_data_dict.get('fluid_senven', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-        self.yali_2_y.append(ins_real_data_dict.get('fluid_eight', 0))
+        try:
+            self.liuliang_y.append(flow_real_data_dict[self.row].get('4_flow_ch', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(oilPressure_real_data_dict[self.row].get('8_oilPressure_ch', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(oilPressure_real_data_dict[self.row].get('4_oilPressure_ch', 0))
+            self.row += 1
+        except:
+            self.liuliang_y.append(0)  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(0)  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(0)
         self.axes.plot(self.liuliang_y, color='#CD853F', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#CD853F', label='压力1')
         self.axes.plot(self.yali_2_y, color='#A52A2A', label='压力2')

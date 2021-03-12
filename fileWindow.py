@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import sys
 from ftplib import FTP
-from run.run2020.env2019.env.app.PyqtWindow.graph import Table
+from graph import files, Table
 
 class File_UpLoad(QWidget):
 
@@ -132,12 +132,12 @@ class File_UpLoad(QWidget):
         ftp.login('test', '123456')
 
         # 上传文件
-        path = '/home/rpdzkj/run/run2020/env2019/env/'
         # path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env'
         for row in range(self.table.row_num):
             if self.table.tableWidget.cellWidget(row,0).isChecked():
                 fname = self.table.tableWidget.item(row,1).text()
-                file_path = path + '/' + fname   # 在linux下是'/'，在window下是用'\\'
+                file_path = files[row][0] + '\\' + fname   # 在linux下是'/'，在window下是用'\\'
+                print(file_path)
                 f = open(file_path, 'rb')
                 ftp.storbinary("STOR " + fname, f, 1024)   # 这里STOP后要有一个空格
                 f.close()

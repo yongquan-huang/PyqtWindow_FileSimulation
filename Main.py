@@ -1,9 +1,9 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
-from run.run2020.env2019.env.app.PyqtWindow.MainWin import MainForm
-from run.run2020.env2019.env.app.PyqtWindow.historyWin import history_data
-from run.run2020.env2019.env.app.PyqtWindow.realtimeWin import realtime_data
-from run.run2020.env2019.env.app.PyqtWindow.fileWindow import File_UpLoad
+from MainWin import MainForm
+from historyWin import history_data
+from realtimeWin import realtime_data
+from fileWindow import File_UpLoad
 
 class Controller():
     def __init__(self):
