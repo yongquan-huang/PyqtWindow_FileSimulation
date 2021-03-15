@@ -18,26 +18,32 @@ path4_flow_data = r'.\txt文件\four20\20flow_data.txt'
 path4_ins_data = r'.\txt文件\four20\20ins_data.txt'
 path4_oilPressure_data = r'.\txt文件\four20\20oilPressure_data.txt'
 
-def read_data(path_flow_data, path_ins_data, path_oilPressure_data):
-    with open(path_flow_data, 'r') as f1, open(path_ins_data, 'r') as f2,\
-         open(path_oilPressure_data, 'r') as f3:
-        line1 = f1.readline()
+# 读取仪表盘数据
+def read_data(path_ins_data):
+    with open(path_ins_data, 'r') as f2:
         line2 = f2.readline()
-        line3 = f3.readline()
-        while line1 and line2:
-            flow_data = eval(line1)
+        while line2:
             ins_data = eval(line2)
-            oilPressure_data = eval(line3)
             ins_real_data_dict.append(ins_data)
+            line2 = f2.readline()
+
+# 读取flow流量数据，oilpressure油压数据
+def read_data2(path_flow_data, path_oilPressure_data):
+    with open(path_flow_data, 'r') as f1, open(path_oilPressure_data, 'r') as f3:
+        line1 = f1.readline()
+        line3 = f3.readline()
+        while line1 and line3:
+            flow_data = eval(line1)
+            oilPressure_data = eval(line3)
             flow_real_data_dict.append(flow_data)
             oilPressure_real_data_dict.append(oilPressure_data)
             line1 = f1.readline()
-            line2 = f2.readline()
             line3 = f3.readline()
 
 # 读取firstFile5文件夹数据
-read_data(path1_flow_data, path1_ins_data, path1_oilPressure_data)
-
+read_data(path4_ins_data)
+read_data2(path4_flow_data, path4_oilPressure_data)
+# print(len(ins_real_data_dict), len(flow_real_data_dict), len(oilPressure_real_data_dict))
 # 读取third10文件夹数据
 # read_data(path2_flow_data, path2_ins_data, path2_oilPressure_data)
 

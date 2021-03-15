@@ -66,16 +66,15 @@ class MainWindow(QMainWindow):
         self.label_3.setText("")
         self.label_3.setFixedWidth(845)
         self.label_3.setFixedHeight(431)
-        img3 = QImage("./首页机器图片.png")
+        img3 = QImage("machine.png")
         result3 = img3.scaled(self.label_3.width(), self.label_3.height(), Qt.IgnoreAspectRatio,Qt.SmoothTransformation)
         self.label_3.setPixmap(QPixmap.fromImage(result3))
         self.label_3.setObjectName("label_3")
 
         # 关键作业部件工况参数马达字体textlabel建立和设置
         # 根切器马达
-        
         self.label1 = QLabel(self)
-        self.label1.setGeometry(QtCore.QRect(555, 70, 169, 30))
+        self.label1.setGeometry(QtCore.QRect(555, 70, 211, 30))
         font.setFamily("Arial")
         font.setPointSize(16)
         self.label1.setFont(font)
@@ -83,15 +82,15 @@ class MainWindow(QMainWindow):
         self.label1.setAlignment(Qt.AlignCenter)
         # 输送辊马达
         self.label2 = QLabel(self)
-        self.label2.setGeometry(QtCore.QRect(724, 70, 169, 30))
+        self.label2.setGeometry(QtCore.QRect(766, 70, 211, 30))
         font.setFamily("Arial")
         font.setPointSize(16)
         self.label2.setFont(font)
-        self.label2.setText('一级输送通道马达')
+        self.label2.setText('喂入辊马达')
         self.label2.setAlignment(Qt.AlignCenter)
         # 切段刀辊马达
         self.label3 = QLabel(self)
-        self.label3.setGeometry(QtCore.QRect(893, 70, 169, 30))
+        self.label3.setGeometry(QtCore.QRect(977, 70, 211, 30))
         font.setFamily("Arial")
         font.setPointSize(16)
         self.label3.setFont(font)
@@ -99,32 +98,32 @@ class MainWindow(QMainWindow):
         self.label3.setAlignment(Qt.AlignCenter)
         # 排风机马达
         self.label4 = QLabel(self)
-        self.label4.setGeometry(QtCore.QRect(1062, 70, 169, 30))
+        self.label4.setGeometry(QtCore.QRect(1188, 70, 211, 30))
         font.setFamily("Arial")
         font.setPointSize(16)
         self.label4.setFont(font)
-        self.label4.setText('除杂风机马达')
+        self.label4.setText('排杂风机马达')
         self.label4.setAlignment(Qt.AlignCenter)
         # 二级输送通道马达
-        self.label5 = QLabel(self)
-        self.label5.setGeometry(QtCore.QRect(1231, 70, 169, 30))
-        font.setFamily("Arial")
-        font.setPointSize(16)
-        self.label5.setFont(font)
-        self.label5.setText('二级输送通道马达')
-        self.label5.setAlignment(Qt.AlignCenter)
+        # self.label5 = QLabel(self)
+        # self.label5.setGeometry(QtCore.QRect(1231, 70, 169, 30))
+        # font.setFamily("Arial")
+        # font.setPointSize(16)
+        # self.label5.setFont(font)
+        # self.label5.setText('二级输送通道马达')
+        # self.label5.setAlignment(Qt.AlignCenter)
 
         # 扭矩，转速及其对应数字建立和设置
         # 根切器流量
         self.label6 = QLabel(self.centralwidget)
-        self.label6.setGeometry(QtCore.QRect(555, 80, 84, 25))
+        self.label6.setGeometry(QtCore.QRect(555, 80, 105, 25))  # 93=关键作业部件每个框宽度 / 2 = 211 / 2
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label6.setFont(font)
         self.label6.setText('流量：')
         self.label6.setAlignment(Qt.AlignCenter)
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(623, 80, 100, 25))  # 坐标x、y,长宽
+        self.label_4.setGeometry(QtCore.QRect(666, 80, 100, 25))  # 坐标x、y,长宽 641 = 关键作业部件每个框的横坐标 - 100 = 766 - 100
         self.label_4.setObjectName("label_4")
         font.setFamily("Arial")  # 字体的大小
         font.setPointSize(15)
@@ -132,21 +131,21 @@ class MainWindow(QMainWindow):
         self.label_4.setAlignment(Qt.AlignCenter)
         # 根切器油压
         self.label7 = QLabel(self.centralwidget)
-        self.label7.setGeometry(QtCore.QRect(555, 105, 84, 25))
+        self.label7.setGeometry(QtCore.QRect(555, 105, 105, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label7.setFont(font)
         self.label7.setText('压力：')
         self.label7.setAlignment(Qt.AlignCenter)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(623, 105, 100, 25))
+        self.label_5.setGeometry(QtCore.QRect(666, 105, 100, 25))
         self.label_5.setObjectName("label_5")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_5.setFont(font)
         self.label_5.setAlignment(Qt.AlignCenter)
         self.label_5_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5_2.setGeometry(QtCore.QRect(623, 130, 100, 25))
+        self.label_5_2.setGeometry(QtCore.QRect(666, 130, 100, 25))
         self.label_5_2.setObjectName("label_5")
         font.setFamily("Arial")
         font.setPointSize(15)
@@ -154,36 +153,36 @@ class MainWindow(QMainWindow):
         self.label_5_2.setAlignment(Qt.AlignCenter)
         # 输送辊马达流量
         self.label8 = QLabel(self.centralwidget)
-        self.label8.setGeometry(QtCore.QRect(724, 80, 84, 25))
+        self.label8.setGeometry(QtCore.QRect(766, 80, 105, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label8.setFont(font)
         self.label8.setText('流量：')
         self.label8.setAlignment(Qt.AlignCenter)
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(792, 80, 100, 25))
+        self.label_6.setGeometry(QtCore.QRect(877, 80, 100, 25))
         self.label_6.setObjectName("label_6")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_6.setFont(font)
         self.label_6.setAlignment(Qt.AlignCenter)
-        # 输送辊马达油压
+        # 喂入辊马达油压
         self.label9 = QLabel(self.centralwidget)
-        self.label9.setGeometry(QtCore.QRect(724, 105, 84, 25))
+        self.label9.setGeometry(QtCore.QRect(766, 105, 105, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label9.setFont(font)
         self.label9.setText('压力：')
         self.label9.setAlignment(Qt.AlignCenter)
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(792, 105, 100, 25))
+        self.label_7.setGeometry(QtCore.QRect(877, 105, 100, 25))
         self.label_7.setObjectName("label_7")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_7.setFont(font)
         self.label_7.setAlignment(Qt.AlignCenter)
         self.label_7_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7_2.setGeometry(QtCore.QRect(792, 130, 100, 25))
+        self.label_7_2.setGeometry(QtCore.QRect(877, 130, 100, 25))
         self.label_7_2.setObjectName("label_7")
         font.setFamily("Arial")
         font.setPointSize(15)
@@ -191,14 +190,14 @@ class MainWindow(QMainWindow):
         self.label_7_2.setAlignment(Qt.AlignCenter)
         # 切段刀辊马达流量
         self.label10 = QLabel(self.centralwidget)
-        self.label10.setGeometry(QtCore.QRect(893, 80, 84, 25))
+        self.label10.setGeometry(QtCore.QRect(977, 80, 105, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label10.setFont(font)
         self.label10.setText('流量：')
         self.label10.setAlignment(Qt.AlignCenter)
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(961, 80, 100, 25))
+        self.label_8.setGeometry(QtCore.QRect(1088, 80, 100, 25))
         self.label_8.setObjectName("label_8")
         font.setFamily("Arial")
         font.setPointSize(15)
@@ -206,21 +205,21 @@ class MainWindow(QMainWindow):
         self.label_8.setAlignment(Qt.AlignCenter)
         # 切段刀辊马达油压
         self.label11 = QLabel(self.centralwidget)
-        self.label11.setGeometry(QtCore.QRect(893, 105, 84, 25))
+        self.label11.setGeometry(QtCore.QRect(977, 105, 105, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label11.setFont(font)
         self.label11.setText('压力：')
         self.label11.setAlignment(Qt.AlignCenter)
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(961, 105, 100, 25))
+        self.label_9.setGeometry(QtCore.QRect(1088, 105, 100, 25))
         self.label_9.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_9.setFont(font)
         self.label_9.setAlignment(Qt.AlignCenter)
         self.label_9_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9_2.setGeometry(QtCore.QRect(961, 130, 100, 25))
+        self.label_9_2.setGeometry(QtCore.QRect(1088, 130, 100, 25))
         self.label_9_2.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
@@ -228,14 +227,14 @@ class MainWindow(QMainWindow):
         self.label_9_2.setAlignment(Qt.AlignCenter)
         # 排风机马达流量
         self.label12 = QLabel(self.centralwidget)
-        self.label12.setGeometry(QtCore.QRect(1062, 80, 84, 25))
+        self.label12.setGeometry(QtCore.QRect(1188, 80, 105, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label12.setFont(font)
         self.label12.setText('流量：')
         self.label12.setAlignment(Qt.AlignCenter)
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        self.label_10.setGeometry(QtCore.QRect(1130, 80, 100, 25))
+        self.label_10.setGeometry(QtCore.QRect(1300, 80, 100, 25))
         self.label_10.setObjectName("label_10")
         font.setFamily("Arial")
         font.setPointSize(15)
@@ -243,63 +242,63 @@ class MainWindow(QMainWindow):
         self.label_10.setAlignment(Qt.AlignCenter)
         # 排风机马达油压
         self.label13 = QLabel(self.centralwidget)
-        self.label13.setGeometry(QtCore.QRect(1062, 105, 84, 25))
+        self.label13.setGeometry(QtCore.QRect(1188, 105, 105, 25))
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label13.setFont(font)
         self.label13.setText('压力：')
         self.label13.setAlignment(Qt.AlignCenter)
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
-        self.label_11.setGeometry(QtCore.QRect(1130, 105, 100, 25))
+        self.label_11.setGeometry(QtCore.QRect(1300, 105, 100, 25))
         self.label_11.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_11.setFont(font)
         self.label_11.setAlignment(Qt.AlignCenter)
         self.label_11_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_11_2.setGeometry(QtCore.QRect(1130, 130, 100, 25))
+        self.label_11_2.setGeometry(QtCore.QRect(1300, 130, 100, 25))
         self.label_11_2.setObjectName("label_9")
         font.setFamily("Arial")
         font.setPointSize(15)
         self.label_11_2.setFont(font)
         self.label_11_2.setAlignment(Qt.AlignCenter)
         # 二级输送通道马达流量
-        self.label14 = QLabel(self.centralwidget)
-        self.label14.setGeometry(QtCore.QRect(1231, 80, 84, 25))
-        font.setFamily("Arial")
-        font.setPointSize(15)
-        self.label14.setFont(font)
-        self.label14.setText('流量：')
-        self.label14.setAlignment(Qt.AlignCenter)
-        self.label_12 = QtWidgets.QLabel(self.centralwidget)
-        self.label_12.setGeometry(QtCore.QRect(1299, 80, 100, 25))
-        self.label_12.setObjectName("label_10")
-        font.setFamily("Arial")
-        font.setPointSize(15)
-        self.label_12.setFont(font)
-        self.label_12.setAlignment(Qt.AlignCenter)
-        # 二级输送通道马达油压
-        self.label15 = QLabel(self.centralwidget)
-        self.label15.setGeometry(QtCore.QRect(1231, 105, 84, 25))
-        font.setFamily("Arial")
-        font.setPointSize(15)
-        self.label15.setFont(font)
-        self.label15.setText('压力：')
-        self.label15.setAlignment(Qt.AlignCenter)
-        self.label_13 = QtWidgets.QLabel(self.centralwidget)
-        self.label_13.setGeometry(QtCore.QRect(1299, 105, 100, 25))
-        self.label_13.setObjectName("label_9")
-        font.setFamily("Arial")
-        font.setPointSize(15)
-        self.label_13.setFont(font)
-        self.label_13.setAlignment(Qt.AlignCenter)
-        self.label_13_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_13_2.setGeometry(QtCore.QRect(1299, 130, 100, 25))
-        self.label_13_2.setObjectName("label_9")
-        font.setFamily("Arial")
-        font.setPointSize(15)
-        self.label_13_2.setFont(font)
-        self.label_13_2.setAlignment(Qt.AlignCenter)
+        # self.label14 = QLabel(self.centralwidget)
+        # self.label14.setGeometry(QtCore.QRect(1231, 80, 84, 25))
+        # font.setFamily("Arial")
+        # font.setPointSize(15)
+        # self.label14.setFont(font)
+        # self.label14.setText('流量：')
+        # self.label14.setAlignment(Qt.AlignCenter)
+        # self.label_12 = QtWidgets.QLabel(self.centralwidget)
+        # self.label_12.setGeometry(QtCore.QRect(1299, 80, 100, 25))
+        # self.label_12.setObjectName("label_10")
+        # font.setFamily("Arial")
+        # font.setPointSize(15)
+        # self.label_12.setFont(font)
+        # self.label_12.setAlignment(Qt.AlignCenter)
+        # # 二级输送通道马达油压
+        # self.label15 = QLabel(self.centralwidget)
+        # self.label15.setGeometry(QtCore.QRect(1231, 105, 84, 25))
+        # font.setFamily("Arial")
+        # font.setPointSize(15)
+        # self.label15.setFont(font)
+        # self.label15.setText('压力：')
+        # self.label15.setAlignment(Qt.AlignCenter)
+        # self.label_13 = QtWidgets.QLabel(self.centralwidget)
+        # self.label_13.setGeometry(QtCore.QRect(1299, 105, 100, 25))
+        # self.label_13.setObjectName("label_9")
+        # font.setFamily("Arial")
+        # font.setPointSize(15)
+        # self.label_13.setFont(font)
+        # self.label_13.setAlignment(Qt.AlignCenter)
+        # self.label_13_2 = QtWidgets.QLabel(self.centralwidget)
+        # self.label_13_2.setGeometry(QtCore.QRect(1299, 130, 100, 25))
+        # self.label_13_2.setObjectName("label_9")
+        # font.setFamily("Arial")
+        # font.setPointSize(15)
+        # self.label_13_2.setFont(font)
+        # self.label_13_2.setAlignment(Qt.AlignCenter)
 
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(60, 77, 400, 300))
@@ -375,11 +374,11 @@ class MainWindow(QMainWindow):
 
         self.timer = QTimer()  # 窗口重绘定时器，负责每次刷新窗口
         self.timer.timeout.connect(self.update)
-        self.timer.start(1000)  # 单位为毫秒
+        self.timer.start(10)  # 1秒，单位为毫秒
 
         self.testTimer = QTimer()  # 数据定时器，负责每次刷新数据
         self.testTimer.timeout.connect(self.testTimer_timeout_handle)
-        self.testTimer.start(1000)
+        self.testTimer.start(10)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -404,7 +403,7 @@ class MainWindow(QMainWindow):
             qieduandao_liuliang = flow_real_data_dict[self.row].get('2_flow_ch', 0)
             chuzhafengji_liuliang = flow_real_data_dict[self.row].get('3_flow_ch', 0)
             yijishusong_liuliang = flow_real_data_dict[self.row].get('1_flow_ch', 0)
-            erjishusong_liuliang = flow_real_data_dict[self.row].get('4_flow_ch', 0)
+            # erjishusong_liuliang = flow_real_data_dict[self.row].get('4_flow_ch', 0)
             # 各个马达压力
             qieduandao_yali_1 = oilPressure_real_data_dict[self.row].get('6_oilPressure_ch', 0)
             qieduandao_yali_2 = oilPressure_real_data_dict[self.row].get('2_oilPressure_ch', 0)
@@ -412,14 +411,14 @@ class MainWindow(QMainWindow):
             chuzhafengji_yali_2 = oilPressure_real_data_dict[self.row].get('3_oilPressure_ch', 0)
             yijishusong_yali_1 = oilPressure_real_data_dict[self.row].get('5_oilPressure_ch', 0)
             yijishusong_yali_2 = oilPressure_real_data_dict[self.row].get('1_oilPressure_ch', 0)
-            erjishusong_yali_1 = oilPressure_real_data_dict[self.row].get('8_oilPressure_ch', 0)
-            erjishusong_yali_2 = oilPressure_real_data_dict[self.row].get('4_oilPressure_ch', 0)
+            # erjishusong_yali_1 = oilPressure_real_data_dict[self.row].get('8_oilPressure_ch', 0)
+            # erjishusong_yali_2 = oilPressure_real_data_dict[self.row].get('4_oilPressure_ch', 0)
             self.row += 1
         except:
             qieduandao_liuliang = 0
             chuzhafengji_liuliang = 0
             yijishusong_liuliang = 0
-            erjishusong_liuliang = 0
+            # erjishusong_liuliang = 0
             # 各个马达压力
             qieduandao_yali_1 = 0
             qieduandao_yali_2 = 0
@@ -427,8 +426,8 @@ class MainWindow(QMainWindow):
             chuzhafengji_yali_2 = 0
             yijishusong_yali_1 = 0
             yijishusong_yali_2 = 0
-            erjishusong_yali_1 = 0
-            erjishusong_yali_2 = 0
+            # erjishusong_yali_1 = 0
+            # erjishusong_yali_2 = 0
         self.label_6.setText(str(yijishusong_liuliang) + 'L/min')
         self.label_7.setText(str(yijishusong_yali_1) + 'bar')
         self.label_7_2.setText(str(yijishusong_yali_2) + 'bar')
@@ -438,9 +437,9 @@ class MainWindow(QMainWindow):
         self.label_10.setText(str(chuzhafengji_liuliang) + 'L/min')
         self.label_11.setText(str(chuzhafengji_yali_1) + 'bar')
         self.label_11_2.setText(str(chuzhafengji_yali_2) + 'bar')
-        self.label_12.setText(str(erjishusong_liuliang) + 'L/min')
-        self.label_13.setText(str(erjishusong_yali_1) + 'bar')
-        self.label_13_2.setText(str(erjishusong_yali_2) + 'bar')
+        # self.label_12.setText(str(erjishusong_liuliang) + 'L/min')
+        # self.label_13.setText(str(erjishusong_yali_1) + 'bar')
+        # self.label_13_2.setText(str(erjishusong_yali_2) + 'bar')
 
 # 仪表盘数据——发动机转速
 class GaugePanel(QWidget):
@@ -452,7 +451,7 @@ class GaugePanel(QWidget):
 
         self.timer = QTimer()  # 窗口重绘定时器，负责每次刷新窗口
         self.timer.timeout.connect(self.update)
-        self.timer.start(1000) #单位为毫秒
+        self.timer.start(1000) # 1秒，单位为毫秒
 
         self.testTimer = QTimer()  #数据定时器，负责每次刷新数据
         self.testTimer.timeout.connect(self.testTimer_timeout_handle)
@@ -856,14 +855,14 @@ class MainForm(MainWindow):
         brush = QBrush(Qt.white)
         qp.setBrush(brush)
         qp.drawRect(0, 37, 1400, 26)
-        # 绘制马达5个矩形框
+        # 绘制马达5个矩形框: 4个
         pen = QPen(Qt.SolidLine)
         qp.setPen(pen)
-        qp.drawRect(555, 63, 169, 150)
-        qp.drawRect(724, 63, 169, 150)
-        qp.drawRect(893, 63, 169, 150)
-        qp.drawRect(1062, 63, 169, 150)
-        qp.drawRect(1231, 63, 169, 150)
+        qp.drawRect(555, 63, 211, 150)
+        qp.drawRect(766, 63, 211, 150)
+        qp.drawRect(977, 63, 211, 150)
+        qp.drawRect(1188, 63, 211, 150)
+        # qp.drawRect(1231, 63, 169, 150)
     # def work(self):   # 串口模拟采集数据的线程
     #     workthread = WorkThread()
     #     workthread.setDaemon(True)   #守护线程。当主进程结束后，子线程也会随之结束。

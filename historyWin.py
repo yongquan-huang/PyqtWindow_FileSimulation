@@ -121,10 +121,10 @@ class history_data(QWidget):
         self.label_4.setGeometry(QtCore.QRect(840, 240, 101, 31))
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(self.groupBox)
-        self.label_5.setGeometry(QtCore.QRect(1160, 245, 221, 20))
+        self.label_5.setGeometry(QtCore.QRect(1200, 245, 221, 20))
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.groupBox)
-        self.label_6.setGeometry(QtCore.QRect(90, 500, 211, 20))
+        self.label_6.setGeometry(QtCore.QRect(100, 500, 211, 20))
         self.label_6.setObjectName("label_6")
         self.gridLayoutWidget_8 = QtWidgets.QWidget(self.groupBox)
         self.gridLayoutWidget_8.setGeometry(QtCore.QRect(360, 270, 341, 220))
@@ -133,13 +133,13 @@ class history_data(QWidget):
         self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_6.setObjectName("gridLayout_9")
         self.label_7 = QtWidgets.QLabel(self.groupBox)
-        self.label_7.setGeometry(QtCore.QRect(450, 500, 211, 20))
+        self.label_7.setGeometry(QtCore.QRect(470, 500, 211, 20))
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(self.groupBox)
-        self.label_8.setGeometry(QtCore.QRect(800, 500, 201, 21))
+        self.label_8.setGeometry(QtCore.QRect(820, 500, 201, 21))
         self.label_8.setObjectName("label_8")
         self.label_9 = QtWidgets.QLabel(self.groupBox)
-        self.label_9.setGeometry(QtCore.QRect(1160, 500, 171, 21))
+        self.label_9.setGeometry(QtCore.QRect(1200, 500, 171, 21))
         self.label_9.setObjectName("label_9")
         self.layoutWidget = QtWidgets.QWidget(history_data)
         self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 532, 37))
@@ -182,10 +182,30 @@ class history_data(QWidget):
         font.setPointSize(11)
         self.comboBox.setFont(font)
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+        file_list = ['ins_data.txt和flow_data.txt', 'ins_data.txt', 'flow_data.txt', '文件4', '文件5', '文件6', '文件7']
+        self.comboBox.addItems(file_list)  # 加入下拉列表内容
+        # 设置滚动条
+        self.comboBox.setStyleSheet("QComboBox {"
+                                    "combobox-popup: 0;\n"  # 滚动条设置必需
+                                    "border-style:none; }"
+                                    "QComboBox QAbstractScrollArea QScrollBar:vertical {"  # 滚动条样式
+                                    "width: 6px;\n"
+                                    "height: 100px;"
+                                    "background-color: transparent;  }\n"
+
+                                    "QComboBox QAbstractScrollArea QScrollBar::handle:vertical {\n"  # 滚动条样式
+                                    "border-radius: 3px;   "
+                                    "background: rgba(0,0,0,0.1);}\n"
+
+                                    "QComboBox QScrollBar::add-line::vertical{"  # 滚动条上箭头
+                                    "border:none;}"
+                                    "QComboBox QScrollBar::sub-line::vertical{"  # 滚动条下箭头
+                                    "border:none;}")
+        self.comboBox.setMaxVisibleItems(4)
+        # self.comboBox.addItem("")
+        # self.comboBox.addItem("")
+        # self.comboBox.addItem("")
+        # self.comboBox.addItem("")
         self.comboBox.currentIndexChanged.connect(self.draw)
 
         self.retranslateUi(history_data)
@@ -198,19 +218,19 @@ class history_data(QWidget):
         self.label_2.setText(_translate("history_data", "水温"))
         self.label_3.setText(_translate("history_data", "油压"))
         self.label_4.setText(_translate("history_data", "发动机转速"))
-        self.label_5.setText(_translate("history_data", "作业部件流量"))
-        self.label_6.setText(_translate("history_data", "输送辊马达压力"))
-        self.label_7.setText(_translate("history_data", "切断刀马达压力"))
-        self.label_8.setText(_translate("history_data", "排风机马达压力"))
-        self.label_9.setText(_translate("history_data", "二级输送通道压力"))
+        self.label_5.setText(_translate("history_data", "根切器马达压力"))
+        self.label_6.setText(_translate("history_data", "喂入辊马达压力"))
+        self.label_7.setText(_translate("history_data", "切断刀辊马达压力"))
+        self.label_8.setText(_translate("history_data", "排杂风机马达压力"))
+        self.label_9.setText(_translate("history_data", "作业部件流量"))
         self.pushButton.setText(_translate("history_data", "实时数据"))
         self.pushButton_2.setText(_translate("history_data", "实时数据波形显示"))
         self.pushButton_3.setText(_translate("history_data", "历史数据"))
         self.pushButton_4.setText(_translate("history_data", "文件管理"))
-        self.comboBox.setItemText(0, _translate("history_data", "ins_data.txt和flow_data.txt"))
-        self.comboBox.setItemText(1, _translate("history_data", "ins_data.txt"))
-        self.comboBox.setItemText(2, _translate("history_data", "flow_data.txt"))
-        self.comboBox.setItemText(3, _translate("history_data", "文件4"))
+        # self.comboBox.setItemText(0, _translate("history_data", "ins_data.txt和flow_data.txt"))
+        # self.comboBox.setItemText(1, _translate("history_data", "ins_data.txt"))
+        # self.comboBox.setItemText(2, _translate("history_data", "flow_data.txt"))
+        # self.comboBox.setItemText(3, _translate("history_data", "文件4"))
 
     # def paintEvent(self, e):  #绘制曲线图各文字所对应的线
     #     qp = QPainter()
@@ -269,27 +289,27 @@ class history_data(QWidget):
     def MatplotlibWidget(self):
         for ins_data in ins_real_data_dict:
             time_x1.append(ins_data['time'])
-            shuiwen_y.append(ins_data['water_temperature'])
-            youya_y.append(ins_data['oil_pressure'])
-            fadongji_y.append(ins_data['engine_speed'])
+            shuiwen_y.append(float(ins_data['water_temperature']))
+            youya_y.append(float(ins_data['oil_pressure']))
+            fadongji_y.append(float(ins_data['engine_speed']))
 
         for oilPressure_data in oilPressure_real_data_dict:
             time_x2.append(oilPressure_data['time'])
-            qieduandaoyali_1_y.append(oilPressure_data['6_oilPressure_ch'])
-            qieduandaoyali_2_y.append(oilPressure_data['2_oilPressure_ch'])
-            paifengjiyali_1_y.append(oilPressure_data['7_oilPressure_ch'])
-            paifengjiyali_2_y.append(oilPressure_data['3_oilPressure_ch'])
-            shusonggunyali_1_y.append(oilPressure_data['5_oilPressure_ch'])
-            shusonggunyali_2_y.append(oilPressure_data['1_oilPressure_ch'])
-            erjishusongyali_1_y.append(oilPressure_data['8_oilPressure_ch'])
-            erjishusongyali_2_y.append(oilPressure_data['4_oilPressure_ch'])
+            qieduandaoyali_1_y.append(float(oilPressure_data['6_oilPressure_ch']))
+            qieduandaoyali_2_y.append(float(oilPressure_data['2_oilPressure_ch']))
+            paifengjiyali_1_y.append(float(oilPressure_data['7_oilPressure_ch']))
+            paifengjiyali_2_y.append(float(oilPressure_data['3_oilPressure_ch']))
+            shusonggunyali_1_y.append(float(oilPressure_data['5_oilPressure_ch']))
+            shusonggunyali_2_y.append(float(oilPressure_data['1_oilPressure_ch']))
+            erjishusongyali_1_y.append(float(oilPressure_data['8_oilPressure_ch']))
+            erjishusongyali_2_y.append(float(oilPressure_data['4_oilPressure_ch']))
 
         for flow_data in flow_real_data_dict:
             time_x3.append(flow_data['time'])
-            qieduandaoliuliang_y.append(flow_data['2_flow_ch'])
-            paifengjiliuliang_y.append(flow_data['3_flow_ch'])
-            shusonggunliuliang_y.append(flow_data['1_flow_ch'])
-            erjishusongliuliang_y.append(flow_data['4_flow_ch'])
+            qieduandaoliuliang_y.append(float(flow_data['2_flow_ch']))
+            paifengjiliuliang_y.append(float(flow_data['3_flow_ch']))
+            shusonggunliuliang_y.append(float(flow_data['1_flow_ch']))
+            erjishusongliuliang_y.append(float(flow_data['4_flow_ch']))
 
         # 水温图
         self.shuiwen = History_Canvas()
@@ -312,14 +332,14 @@ class history_data(QWidget):
         # y3 = [random.randint(0, 100) for i in range(10)]
         self.fadongji.fadongji_line(time_x1, fadongji_y)
         self.gridLayout_3.addWidget(self.fadongji)
-        # 作业部件流量   （根切器马达）
-        self.liuliang = History_Canvas()
+        # 根切器马达
+        self.genqieqi = History_Canvas()
         # self.genqieqi.history_plot()
         # x = [i for i in range(1, 11)]
         # y4 = [random.randint(0, 100) for i in range(10)]
         # y5 = [random.randint(0, 100) for i in range(10)]
-        self.liuliang.liuliang_line(time_x3, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y, erjishusongliuliang_y)
-        self.gridLayout_4.addWidget(self.liuliang)
+        # self.liuliang.liuliang_line(time_x3, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y, erjishusongliuliang_y)
+        self.gridLayout_4.addWidget(self.genqieqi)
         # 输送辊马达压力
         self.shusonggun = History_Canvas()
         # self.shusonggun.history_plot()
@@ -344,14 +364,16 @@ class history_data(QWidget):
         # # y11 = [random.randint(0, 100) for i in range(10)]
         self.paifengji.paifengji_line(time_x2, paifengjiyali_1_y, paifengjiyali_2_y)
         self.gridLayout_7.addWidget(self.paifengji)
-        # # 二级输送压力
-        self.erjishusong = History_Canvas()
+        # # 作业部件流量
+        self.liuliang = History_Canvas()
+        self.liuliang.liuliang_line(time_x3, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y, erjishusongliuliang_y)
+        self.gridLayout_8.addWidget(self.liuliang)
+        # self.erjishusong = History_Canvas()
         # self.erjishusong.history_plot()
         # # x = [i for i in range(1, 11)]
         # # y10 = [random.randint(0, 100) for i in range(10)]
         # # y11 = [random.randint(0, 100) for i in range(10)]
-        self.erjishusong.erjishusong_line(time_x2, erjishusongyali_1_y, erjishusongyali_2_y)
-        self.gridLayout_8.addWidget(self.erjishusong)
+        # self.erjishusong.erjishusong_line(time_x2, erjishusongyali_1_y, erjishusongyali_2_y)
 
     def draw(self):
         '''下拉列表选项一改变， 重绘图表'''
@@ -362,7 +384,7 @@ class history_data(QWidget):
         self.shusonggun.axes.cla()
         self.qieduandao.axes.cla()
         self.paifengji.axes.cla()
-        self.erjishusong.axes.cla()
+        # self.erjishusong.axes.cla()
         # 绘制曲线
         if self.comboBox.currentIndex() == 0:
             self.shuiwen.shuiwen_line(time_x1, shuiwen_y)
@@ -371,16 +393,17 @@ class history_data(QWidget):
             self.youya.draw()
             self.fadongji.fadongji_line(time_x1, fadongji_y)
             self.fadongji.draw()
-            self.liuliang.liuliang_line(time_x2, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y, erjishusongliuliang_y)
-            self.liuliang.draw()
-            self.shusonggun.shusonggun_line(time_x1, shusonggunyali_1_y, shusonggunyali_2_y)
+            self.shusonggun.shusonggun_line(time_x2, shusonggunyali_1_y, shusonggunyali_2_y)
             self.shusonggun.draw()
-            self.qieduandao.qieduandao_line(time_x1, qieduandaoyali_1_y, qieduandaoyali_2_y)
+            self.qieduandao.qieduandao_line(time_x2, qieduandaoyali_1_y, qieduandaoyali_2_y)
             self.qieduandao.draw()
-            self.paifengji.paifengji_line(time_x1, paifengjiyali_1_y, paifengjiyali_2_y)
+            self.paifengji.paifengji_line(time_x2, paifengjiyali_1_y, paifengjiyali_2_y)
             self.paifengji.draw()
-            self.erjishusong.erjishusong_line(time_x1, erjishusongyali_1_y, erjishusongyali_2_y)
-            self.erjishusong.draw()
+            self.liuliang.liuliang_line(time_x3, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y,
+                                        erjishusongliuliang_y)
+            self.liuliang.draw()
+            # self.erjishusong.erjishusong_line(time_x1, erjishusongyali_1_y, erjishusongyali_2_y)
+            # self.erjishusong.draw()
 
         elif self.comboBox.currentIndex() == 1:
             self.shuiwen.shuiwen_line(time_x1, shuiwen_y)
@@ -394,20 +417,20 @@ class history_data(QWidget):
             self.shusonggun.draw()
             self.qieduandao.draw()
             self.paifengji.draw()
-            self.erjishusong.draw()
+            # self.erjishusong.draw()
 
         elif self.comboBox.currentIndex() == 2:
-            self.liuliang.liuliang_line(time_x2, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y,
+            self.liuliang.liuliang_line(time_x3, shusonggunliuliang_y, qieduandaoliuliang_y, paifengjiliuliang_y,
                                         erjishusongliuliang_y)
             self.liuliang.draw()
-            self.shusonggun.shusonggun_line(time_x1, shusonggunyali_1_y, shusonggunyali_2_y)
+            self.shusonggun.shusonggun_line(time_x2, shusonggunyali_1_y, shusonggunyali_2_y)
             self.shusonggun.draw()
-            self.qieduandao.qieduandao_line(time_x1, qieduandaoyali_1_y, qieduandaoyali_2_y)
+            self.qieduandao.qieduandao_line(time_x2, qieduandaoyali_1_y, qieduandaoyali_2_y)
             self.qieduandao.draw()
-            self.paifengji.paifengji_line(time_x1, paifengjiyali_1_y, paifengjiyali_2_y)
+            self.paifengji.paifengji_line(time_x2, paifengjiyali_1_y, paifengjiyali_2_y)
             self.paifengji.draw()
-            self.erjishusong.erjishusong_line(time_x1, erjishusongyali_1_y, erjishusongyali_2_y)
-            self.erjishusong.draw()
+            # self.erjishusong.erjishusong_line(time_x1, erjishusongyali_1_y, erjishusongyali_2_y)
+            # self.erjishusong.draw()
             # 其他的变为空白画布
             self.shuiwen.draw()
             self.youya.draw()
@@ -422,7 +445,7 @@ class history_data(QWidget):
             self.shusonggun.draw()
             self.qieduandao.draw()
             self.paifengji.draw()
-            self.erjishusong.draw()
+            # self.erjishusong.draw()
         # self.fig.canvas.draw()  # 这里注意是画布重绘，self.figs.canvas
         # self.fig.canvas.flush_events()  # 画布刷新self.figs.canvas
 
@@ -452,6 +475,7 @@ class History_Canvas(FigureCanvas):  #画板
         tick_spacing = 10
         self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))   #设置y轴刻度的间隔
         self.axes.plot(x, y1, color='red', label='水温')
+        self.axes.set_ylim(ymin=0, ymax=100)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 图例左上角
     def youya_line(self,x,y2):
@@ -459,9 +483,10 @@ class History_Canvas(FigureCanvas):  #画板
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
         self.axes.xaxis.set_major_formatter(xfmt)
-        tick_spacing = 10
-        self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))  # 设置y轴刻度的间隔
+        # tick_spacing = 10
+        # self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))  # 设置y轴刻度的间隔
         self.axes.plot(x, y2, color='orange', label='油压')
+        self.axes.set_ylim(ymin=0, ymax=10)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
     def fadongji_line(self,x,y3):
@@ -469,9 +494,10 @@ class History_Canvas(FigureCanvas):  #画板
         x = [datetime.strptime(d, '%d-%H-%M-%S') for d in x]  # 格式化字符串
         xfmt = md.DateFormatter('%d %H:%M:%S')
         self.axes.xaxis.set_major_formatter(xfmt)
-        tick_spacing = 10
-        self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))  # 设置y轴刻度的间隔
+        # tick_spacing = 10
         self.axes.plot(x, y3, color='yellow', label='转速')
+        self.axes.set_ylim(ymin=0, ymax=2000)
+        # self.axes.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))  # 设置y轴刻度的间隔
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
     def liuliang_line(self,x,y4_1,y4_2,y4_3,y4_4):

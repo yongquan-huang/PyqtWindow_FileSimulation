@@ -64,6 +64,15 @@ class File_UpLoad(QWidget):
         self.pushButton_5.setFont(font)
         self.pushButton_5.clicked.connect(self.file_upload)  # 信号连接到ftp文件上传槽函数
         self.pushButton_5.clicked.connect(self.msg)
+        # 文件删除
+        self.pushButton_6 = QtWidgets.QPushButton(File_UpLoad)
+        self.pushButton_6.setGeometry(QtCore.QRect(220, 50, 100, 30))
+        self.pushButton_6.setObjectName("pushButton_5")
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(15)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.clicked.connect(self.msg2)
 
         # self.checkBox = QtWidgets.QCheckBox(File_UpLoad)
         # self.checkBox.setGeometry(QtCore.QRect(20, 90, 160, 30))
@@ -114,6 +123,7 @@ class File_UpLoad(QWidget):
         self.pushButton_3.setText(_translate("File_UpLoad", "历史数据"))
         self.pushButton_4.setText(_translate("File_UpLoad", "文件管理"))
         self.pushButton_5.setText(_translate("File_UpLoad", "文件上传"))
+        self.pushButton_6.setText(_translate("File_UpLoad", "文件删除"))
         # self.checkBox.setText(_translate("File_UpLoad", "torque_data.txt"))
         # self.checkBox_2.setText(_translate("File_UpLoad", "ins_data.txt"))
         # self.checkBox_3.setText(_translate("File_UpLoad", "CheckBox"))
@@ -127,9 +137,9 @@ class File_UpLoad(QWidget):
 
         # 连接ftp服务器
         # 服务器iP和端口port
-        ftp.connect('14.152.59.113', 21)
+        ftp.connect('47.102.99.195', 21)
         # 登录用户名和密码
-        ftp.login('test', '123456')
+        ftp.login('vsftpd', 'ftp123456')
 
         # 上传文件
         # path = r'E:\甘蔗机网关\cane11.6\run\run2020\env2019\env'
@@ -165,6 +175,10 @@ class File_UpLoad(QWidget):
     def msg(self):
         '''文件上传成功弹出窗口'''
         QMessageBox.information(self, '消息', '上传成功')
+
+    def msg2(self):
+        '''文件上传成功弹出窗口'''
+        QMessageBox.information(self, '消息', '删除成功')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

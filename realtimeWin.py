@@ -9,6 +9,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
 # from run.run2020.env2019.env.app.CloudConn.cane_harvester import torque_real_data_dict,ins_real_data_dict
 from data_dict import ins_real_data_dict, flow_real_data_dict, oilPressure_real_data_dict
+# import numpy as np
 
 class realtime_data(QWidget):
     def __init__(self):
@@ -118,9 +119,9 @@ class realtime_data(QWidget):
         self.label_8 = QtWidgets.QLabel(self.groupBox)
         self.label_8.setGeometry(QtCore.QRect(840, 455, 201, 21))
         self.label_8.setObjectName("label_8")
-        self.label_9 = QtWidgets.QLabel(self.groupBox)
-        self.label_9.setGeometry(QtCore.QRect(1180, 455, 171, 21))
-        self.label_9.setObjectName("label_9")
+        # self.label_9 = QtWidgets.QLabel(self.groupBox)
+        # self.label_9.setGeometry(QtCore.QRect(1180, 455, 171, 21))
+        # self.label_9.setObjectName("label_9")
         self.layoutWidget = QtWidgets.QWidget(realtime_data)
         self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 532, 37))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -166,10 +167,10 @@ class realtime_data(QWidget):
         self.label_3.setText(_translate("realtime_data", "油压"))
         self.label_4.setText(_translate("realtime_data", "发动机转速"))
         self.label_5.setText(_translate("realtime_data", "根切器马达"))
-        self.label_6.setText(_translate("realtime_data", "一级输送通道马达"))
-        self.label_7.setText(_translate("realtime_data", "切段刀马达"))
-        self.label_8.setText(_translate("realtime_data", "除杂风机马达"))
-        self.label_9.setText(_translate("realtime_data", "二级输送通道马达"))
+        self.label_6.setText(_translate("realtime_data", "喂入辊马达"))
+        self.label_7.setText(_translate("realtime_data", "切段刀辊马达"))
+        self.label_8.setText(_translate("realtime_data", "排杂风机马达"))
+        # self.label_9.setText(_translate("realtime_data", "二级输送通道马达"))
         self.pushButton.setText(_translate("realtime_data", "实时数据"))
         self.pushButton_2.setText(_translate("realtime_data", "实时数据波形显示"))
         self.pushButton_3.setText(_translate("realtime_data", "历史数据"))
@@ -252,8 +253,16 @@ class realtime_data(QWidget):
         self.paifengji = Paifengji_Canvas()
         self.gridLayout_7.addWidget(self.paifengji)
         # 二级输送图
-        self.erjishusong = Erjishusong_Canvas()
-        self.gridLayout_8.addWidget(self.erjishusong)
+        # self.erjishusong = Erjishusong_Canvas()
+        # self.gridLayout_8.addWidget(self.erjishusong)
+
+    def end_timer(self):
+        self.shuiwen.end_timer()
+        self.youya.end_timer()
+        self.fadongji.end_timer()
+        self.shusongun.end_timer()
+        self.qieduandao.end_timer()
+        self.paifengji.end_timer()
 
 class Shuiwen_Canvas(FigureCanvas):
     '''水温图类'''
@@ -273,7 +282,7 @@ class Shuiwen_Canvas(FigureCanvas):
 
         self.timer = QtCore.QTimer(self)   # 窗口重绘定时器
         self.timer.timeout.connect(self.line)
-        self.timer.start(100)
+        self.timer.start(1000)
 
         self.row = 0
 
@@ -285,11 +294,14 @@ class Shuiwen_Canvas(FigureCanvas):
             self.row += 1
         except:
             self.data_y.append(0)
+        print('shuiwen:', self.row)
         self.axes.plot(self.data_y, color='red', label='水温')
+        # self.axes.set_ylim(ymin=0, ymax=100)
+        self.axes.set_xlim(xmin=0, xmax=50)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
         self.draw()
-        if len(self.data_y) > 5:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
+        if len(self.data_y) > 50:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
             self.data_y = self.data_y[1:]
         self.axes.cla()
 
@@ -307,11 +319,14 @@ class Youya_Canvas(Shuiwen_Canvas):
             self.row += 1
         except:
             self.data_y.append(0)
+        print('youya:', self.row)
         self.axes.plot(self.data_y, color='orange', label='油压')
+        # self.axes.set_ylim(ymin=0, ymax=10)
+        self.axes.set_xlim(xmin=0, xmax=50)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
         self.draw()
-        if len(self.data_y) > 5:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
+        if len(self.data_y) > 50:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
             self.data_y = self.data_y[1:]
         self.axes.cla()
 
@@ -331,22 +346,33 @@ class Fadongji_Canvas(Shuiwen_Canvas):
             self.data_y.append(0)
         # print('{}:{}'.format(self.row, self.data_y[-1]))
         self.axes.plot(self.data_y, color='yellow', label='转速')
+        # self.axes.set_ylim(ymin=0, ymax=2000)
+        self.axes.set_xlim(xmin=0, xmax=50)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
         self.draw()
-        if len(self.data_y) > 5:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
+        if len(self.data_y) > 50:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
             self.data_y = self.data_y[1:]
         self.axes.cla()  # 画布清空
 
-class Genqieqi_Canvas(Shuiwen_Canvas):
+class Genqieqi_Canvas(FigureCanvas):
     '''根切器图类'''
 
     def __init__(self, width=8.56, height=3.83, dpi=100):
-        super(Genqieqi_Canvas, self).__init__(width, height, dpi)
-        del self.data_y
-        self.liuliang_y = []
-        self.yali_1_y = []
-        self.yali_2_y = []
+        # 配置中文显示
+        plt.rcParams['font.family'] = ['SimHei']  # 用来正常显示中文标签
+        plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+        # 新建一个绘图对象
+        self.fig = Figure(figsize=(width, height), dpi=dpi)
+        self.axes = self.fig.add_subplot(111)
+        self.data_y = []
+        super(Genqieqi_Canvas, self).__init__(self.fig)
+        '''定义FigureCanvas的尺寸策略，这部分的意思是设置FigureCanvas，使之尽可能的向外填充空间。'''
+        FigureCanvas.setSizePolicy(self, QSizePolicy.Expanding, QSizePolicy.Expanding)
+        FigureCanvas.updateGeometry(self)
+        self.axes.set_xlim(xmin=0, xmax=50)
+        self.axes.grid(True)
+        # self.axes.legend(loc='upper left')  # 左上角
 
     def line(self):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
@@ -372,36 +398,48 @@ class Genqieqi_Canvas(Shuiwen_Canvas):
             self.yali_2_y = self.yali_2_y[1:]
         self.axes.cla()  # 画布清空
 
-class Yijishusong_Canvas(Genqieqi_Canvas):
+class Yijishusong_Canvas(Shuiwen_Canvas):
     '''一级输送图类'''
     def __init__(self, width=8.56, height=3.83, dpi=100):
         super(Yijishusong_Canvas, self).__init__(width, height, dpi)
+        del self.data_y
+        self.liuliang_y = []
+        self.yali_1_y = []
+        self.yali_2_y = []
+
+        # self.timer = QtCore.QTimer(self)  # 窗口重绘定时器
+        # self.timer.timeout.connect(self.line)
+        self.timer.start(10)
 
     def line(self):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
         # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
         try:
-            self.liuliang_y.append(flow_real_data_dict[self.row].get('1_flow_ch', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
-            self.yali_1_y.append(oilPressure_real_data_dict[self.row].get('5_oilPressure_ch', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-            self.yali_2_y.append(oilPressure_real_data_dict[self.row].get('1_oilPressure_ch', 0))
+            self.liuliang_y.append(float(flow_real_data_dict[self.row].get('1_flow_ch', 0)))  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(float(oilPressure_real_data_dict[self.row].get('5_oilPressure_ch', 0)))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(float(oilPressure_real_data_dict[self.row].get('1_oilPressure_ch', 0)))
             self.row += 1
         except:
             self.liuliang_y.append(0)
             self.yali_1_y.append(0)
             self.yali_2_y.append(0)
+        print(self.row)
+        # print('yijishusong:', self.timer.isActive())
         self.axes.plot(self.liuliang_y, color='#81D3F8', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#81D3F8', label='压力1')
         self.axes.plot(self.yali_2_y, color='blue', label='压力2')
+        # self.axes.set_ylim(ymin=0, ymax=40)
+        self.axes.set_xlim(xmin=0, xmax=50)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
         self.draw()
-        if len(self.liuliang_y) > 5 and len(self.yali_1_y) > 5 and len(self.yali_2_y) > 5:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
+        if len(self.liuliang_y) > 50 and len(self.yali_1_y) > 50 and len(self.yali_2_y) > 50:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
             self.liuliang_y = self.liuliang_y[1:]
             self.yali_1_y = self.yali_1_y[1:]
             self.yali_2_y = self.yali_2_y[1:]
         self.axes.cla()  # 画布清空
 
-class Qieduandao_Canvas(Genqieqi_Canvas):
+class Qieduandao_Canvas(Yijishusong_Canvas):
     '''切断刀图类'''
 
     def __init__(self, width=8.56, height=3.83, dpi=100):
@@ -411,26 +449,28 @@ class Qieduandao_Canvas(Genqieqi_Canvas):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
         # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
         try:
-            self.liuliang_y.append(flow_real_data_dict[self.row].get('2_flow_ch', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
-            self.yali_1_y.append(oilPressure_real_data_dict[self.row].get('6_oilPressure_ch', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-            self.yali_2_y.append(oilPressure_real_data_dict[self.row].get('2_oilPressure_ch', 0))
+            self.liuliang_y.append(float(flow_real_data_dict[self.row].get('2_flow_ch', 0)))  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(float(oilPressure_real_data_dict[self.row].get('6_oilPressure_ch', 0)))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(float(oilPressure_real_data_dict[self.row].get('2_oilPressure_ch', 0)))
         except:
             self.liuliang_y.append(0)
             self.yali_1_y.append(0)
             self.yali_2_y.append(0)
+        # print('qieduandao:', self.timer.isActive())
         self.axes.plot(self.liuliang_y, color='#CAF982', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#CAF982', label='压力1')
         self.axes.plot(self.yali_2_y, color='#4B7902', label='压力2')
+        self.axes.set_xlim(xmin=0, xmax=50)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
         self.draw()
-        if len(self.liuliang_y) > 5 and len(self.yali_1_y) > 5 and len(self.yali_2_y) > 5:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
+        if len(self.liuliang_y) > 50 and len(self.yali_1_y) > 50 and len(self.yali_2_y) > 50:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
             self.liuliang_y = self.liuliang_y[1:]
             self.yali_1_y = self.yali_1_y[1:]
             self.yali_2_y = self.yali_2_y[1:]
         self.axes.cla()  # 画布清空
 
-class Paifengji_Canvas(Genqieqi_Canvas):
+class Paifengji_Canvas(Yijishusong_Canvas):
     '''排风机图类'''
 
     def __init__(self, width=8.56, height=3.83, dpi=100):
@@ -440,9 +480,9 @@ class Paifengji_Canvas(Genqieqi_Canvas):
         # from app.CloudConn.cane_harvester import torque_real_data_dict
         # from run.run2020.env2019.env.app.CloudConn.cane_harvester import ins_real_data_dict, flow_real_data_dict
         try:
-            self.liuliang_y.append(flow_real_data_dict[self.row].get('3_flow_ch', 0))  # 暂时不测，直接用'flow_',字典里面无flow_键
-            self.yali_1_y.append(oilPressure_real_data_dict[self.row].get('7_oilPressure_ch', 0))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
-            self.yali_2_y.append(oilPressure_real_data_dict[self.row].get('3_oilPressure_ch', 0))
+            self.liuliang_y.append(float(flow_real_data_dict[self.row].get('3_flow_ch', 0)))  # 暂时不测，直接用'flow_',字典里面无flow_键
+            self.yali_1_y.append(float(oilPressure_real_data_dict[self.row].get('7_oilPressure_ch', 0)))  # 暂时不测，直接用'fluid_'，字典里面无fluid_键
+            self.yali_2_y.append(float(oilPressure_real_data_dict[self.row].get('3_oilPressure_ch', 0)))
             self.row += 1
         except:
             self.liuliang_y.append(0)
@@ -451,16 +491,17 @@ class Paifengji_Canvas(Genqieqi_Canvas):
         self.axes.plot(self.liuliang_y, color='#FFC0CB', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#FFC0CB', label='压力1')
         self.axes.plot(self.yali_2_y, color='#F00CCB', label='压力2')
+        self.axes.set_xlim(xmin=0, xmax=50)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
         self.draw()
-        if len(self.liuliang_y) > 5 and len(self.yali_1_y) > 5 and len(self.yali_2_y) > 5:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
+        if len(self.liuliang_y) > 50 and len(self.yali_1_y) > 50 and len(self.yali_2_y) > 50:  # 当大于100时，绘图都不保留上一次绘图的结果，实现左移
             self.liuliang_y = self.liuliang_y[1:]
             self.yali_1_y = self.yali_1_y[1:]
             self.yali_2_y = self.yali_2_y[1:]
         self.axes.cla()  # 画布清空
 
-class Erjishusong_Canvas(Genqieqi_Canvas):
+class Erjishusong_Canvas(Yijishusong_Canvas):
     '''二级输送图类'''
 
     def __init__(self, width=8.56, height=3.83, dpi=100):
@@ -481,6 +522,7 @@ class Erjishusong_Canvas(Genqieqi_Canvas):
         self.axes.plot(self.liuliang_y, color='#CD853F', linestyle='--', label='流量')
         self.axes.plot(self.yali_1_y, color='#CD853F', label='压力1')
         self.axes.plot(self.yali_2_y, color='#A52A2A', label='压力2')
+        self.axes.set_xlim(xmin=0, xmax=50)
         self.axes.grid(True)
         self.axes.legend(loc='upper left')  # 左上角
         self.draw()
